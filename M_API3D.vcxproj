@@ -232,6 +232,8 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="mapi\Camera.cpp" />
+    <ClCompile Include="mapi\GL4Render.cpp" />
+    <ClCompile Include="mapi\GLFWInputManager.cpp" />
     <ClCompile Include="mapi\GLFWKeyManager.cpp" />
     <ClCompile Include="mapi\GLTexture.cpp" />
     <ClCompile Include="mapi\Material.cpp">
@@ -318,8 +320,11 @@
   <ItemGroup>
     <ClInclude Include="mapi\Camera.h" />
     <ClInclude Include="mapi\common.h" />
+    <ClInclude Include="mapi\GL4Render.h" />
+    <ClInclude Include="mapi\GLFWInputManager.h" />
     <ClInclude Include="mapi\GLFWKeyManager.h" />
     <ClInclude Include="mapi\GLTexture.h" />
+    <ClInclude Include="mapi\InputManager.h" />
     <ClInclude Include="mapi\Material.h" />
     <ClInclude Include="mapi\Mesh3D.h" />
     <ClInclude Include="mapi\Object.h" />
