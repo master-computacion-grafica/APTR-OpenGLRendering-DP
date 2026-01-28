@@ -23,15 +23,15 @@ public:
 
 	// GETTERS && SETTERS //
 
-	glm::vec4 getPosition();
-	glm::vec4 getRotation();
-	glm::vec4 getScale();
-	glm::mat4 getMVP();
+	glm::vec4 getPosition() { return this->position; }
+	glm::vec4 getRotation() { return this->rotation; }
+	glm::vec4 getScale() { return this->scale; }
+	glm::mat4 getMVP() { return this->MVP; }
 
-	void setPosition(glm::vec4 position);
-	void setRotation(glm::vec4 rotation);
-	void setScale(glm::vec4 scale);
-	void setMVP(glm::mat4 MVP);
+	void setPosition(glm::vec4 position) { this->position = position; }
+	void setRotation(glm::vec4 rotation) { this->rotation = rotation; }
+	void setScale(glm::vec4 scale) { this->scale = scale; }
+	void setMVP(glm::mat4 MVP) { this->MVP = MVP; }
 
 
 	// METHODS && FUNCTIONS //
@@ -47,5 +47,5 @@ public:
 		MVP = glm::scale(MVP, glm::vec3(scale));
 	}
 
-	virtual void step(double deltaTime);
+	virtual void step(double deltaTime) = 0;
 };

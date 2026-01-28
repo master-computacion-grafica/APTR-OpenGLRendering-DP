@@ -1,46 +1,45 @@
 #pragma once
+
 #include "mapi/common.h"
 #include "Mesh3D.h"
+#include "Entity.h"
 //#include "vertex.h"
 //#include "Material.h"
 
+enum Tipo
+{
+	D3, D2
+};
 
-class Object
+class Object : Entity
 {
 private:
 
-	Mesh3D * 
-};
+	// ATTRIBUTES //
 
-//class Object
-//{
-//
-//public:
-//    static inline int objectCounter = 0;
-//
-//    int objectId;
-//
-//    glm::vec4  pos;
-//    glm::vec4  rot;
-//    glm::vec4  scaling;
-//
-//    std::vector<vertex_t> vertexList;
-//    std::vector<int>      vertexIndexList;
-//
-//
-//    Material* material=nullptr;
-//
-//
-//    string mshFile = "";
-//
-//    Object();
-//    Object(string mshFile);
-//
-//    glm::mat4 getModelMatrix();
-//
-//    void step(float timeStep);
-//
-//    void loadFile(string mshFile);
-//    void loadObj(string objFile);
-//};
+	Mesh3D* mesh;
+
+	Tipo tipo;
+
+
+public:
+
+	// CONSTRUCTOR //
+
+	Object();
+
+
+	// GETTERS && SETTERS //
+
+	Mesh3D* getMesh() { return this->mesh; }
+	Tipo getTipo() { return this->tipo; }
+
+	void setMesh(Mesh3D* mesh) { this->mesh = mesh; }
+	void setTipo(Tipo tipo) { this->tipo = tipo; }
+
+
+	// METHODS && FUNCTIONS //
+
+	virtual void loadDataFromFile(std::string file) = 0;
+};
 
