@@ -310,6 +310,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="mapi\Mesh3D.cpp" />
     <ClCompile Include="mapi\Object.cpp" />
     <ClCompile Include="mapi\Program.cpp" />
     <ClCompile Include="mapi\Shader.cpp" />
@@ -320,8 +321,10 @@
     <ClInclude Include="mapi\GLFWKeyManager.h" />
     <ClInclude Include="mapi\GLTexture.h" />
     <ClInclude Include="mapi\Material.h" />
+    <ClInclude Include="mapi\Mesh3D.h" />
     <ClInclude Include="mapi\Object.h" />
     <ClInclude Include="mapi\Program.h" />
+    <ClInclude Include="mapi\Render.h" />
     <ClInclude Include="mapi\Shader.h" />
     <ClInclude Include="mapi\stb_image.h" />
     <ClInclude Include="mapi\vertex.h" />
