@@ -41,15 +41,16 @@ void GLFWKeyManager::mousePosEvent(GLFWwindow* window, double xpos, double ypos)
 
 void GLFWKeyManager::mouseButtonEvent(GLFWwindow* window, int button, int action, int mods)
 {
-    switch (action) {
-    case GLFW_PRESS:
+    switch (action) 
     {
-        mouseState.buttonState[button] = true;
-    }break;
-    case GLFW_RELEASE:
-    {
-        mouseState.buttonState[button] = false;
-    }break;
+        case GLFW_PRESS:
+        {
+            mouseState.buttonState[button] = true;
+        }break;
+        case GLFW_RELEASE:
+        {
+            mouseState.buttonState[button] = false;
+        }break;
     }
 }
 
