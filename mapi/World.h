@@ -11,7 +11,7 @@ private:
 
 	// ATTRIBUTES //
 
-	std::list<Object*>	objects;
+	std::list<Object*> objects;
 
 
 public:

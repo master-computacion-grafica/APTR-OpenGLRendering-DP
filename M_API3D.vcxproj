@@ -232,6 +232,7 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="mapi\Camera.cpp" />
+    <ClCompile Include="mapi\FactoryEngine.cpp" />
     <ClCompile Include="mapi\GL4Render.cpp" />
     <ClCompile Include="mapi\GLFWInputManager.cpp" />
     <ClCompile Include="mapi\GLFWKeyManager.cpp" />
@@ -313,13 +314,14 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="mapi\Mesh3D.cpp" />
-    <ClCompile Include="mapi\Object.cpp" />
     <ClCompile Include="mapi\Program.cpp" />
     <ClCompile Include="mapi\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mapi\Camera.h" />
     <ClInclude Include="mapi\common.h" />
+    <ClInclude Include="mapi\Entity.h" />
+    <ClInclude Include="mapi\FactoryEngine.h" />
     <ClInclude Include="mapi\GL4Render.h" />
     <ClInclude Include="mapi\GLFWInputManager.h" />
     <ClInclude Include="mapi\GLFWKeyManager.h" />
@@ -328,11 +330,13 @@
     <ClInclude Include="mapi\Material.h" />
     <ClInclude Include="mapi\Mesh3D.h" />
     <ClInclude Include="mapi\Object.h" />
+    <ClInclude Include="mapi\Object3D.h" />
     <ClInclude Include="mapi\Program.h" />
     <ClInclude Include="mapi\Render.h" />
     <ClInclude Include="mapi\Shader.h" />
     <ClInclude Include="mapi\stb_image.h" />
     <ClInclude Include="mapi\vertex.h" />
+    <ClInclude Include="mapi\World.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\shader.frag" />
