@@ -12,27 +12,24 @@ GLSLShader::GLSLShader(std::string fileName) : Program(fileName)
 	{
 		this->type = programTypes_e::vertex;
 	}
-
-	idProgram = count++;
-}
-
-
-void GLSLShader::compile()
-{
+	
 	GLenum programType;
 	if (type == programTypes_e::vertex)
 		programType = GL_VERTEX_SHADER;
 	else if (type == programTypes_e::fragment)
 		programType = GL_FRAGMENT_SHADER;
 	this->idProgram=glCreateShader(programType);
-	//a�adir codigo
+}
+
+
+void GLSLShader::compile()
+{
 	GLint fileSize;
 	auto code = readFile(fileSize);
 	
-        
 	glShaderSource(idProgram, 1, &code, &fileSize);
 	glCompileShader(idProgram);
-	std::string c = fileName;
+	
 	checkErrors();
 }
 
@@ -47,7 +44,10 @@ void GLSLShader::checkErrors()
 		GLchar message[1024];
 		glGetShaderInfoLog(idProgram, 1024, &log_length, message);
 		std::cout << "ERROR " << fileName << "\n" << message << "\n\n";
+		compiled = false;
+		return;
 	}
+	compiled = true;
 }
 
 

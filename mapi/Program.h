@@ -1,5 +1,5 @@
 #pragma once
-#include <string>
+#include "common.h"
 
 typedef enum class programTypes_e {
 	vertex = 0, fragment = 1
@@ -18,8 +18,7 @@ protected:
 
 	unsigned int idProgram;
 
-	static unsigned int count;
-
+	bool compiled;
 
 public:
 
@@ -33,6 +32,7 @@ public:
 	programTypes_e getType() { return this->type; }
 	std::string getFileName() { return this->fileName; }
 	unsigned int getIdProgram() { return this->idProgram; }
+	bool isCompiled() { return this->compiled; }
 
 	void setType(programTypes_e type) { this->type = type; }
 	void setFileName(std::string fileName) { this->fileName = fileName; }
