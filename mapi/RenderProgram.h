@@ -18,6 +18,7 @@ private:
 
 
 public:
+	virtual ~RenderProgram() = default;
 
 	// CONSTRUCTOR //
 

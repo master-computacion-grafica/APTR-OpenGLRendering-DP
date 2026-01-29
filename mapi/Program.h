@@ -41,7 +41,7 @@ public:
 
 	// METHODS && FUNCTIONS //
 
-	virtual void readFile() = 0;
+	virtual char* readFile(GLint& fileSize) = 0;
 
 	virtual void compile() = 0;
 

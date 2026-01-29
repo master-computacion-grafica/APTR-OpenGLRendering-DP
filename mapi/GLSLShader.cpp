@@ -1,6 +1,6 @@
 #include "GLSLShader.h"
 
-GLSLShader::GLSLShader(std::string fileName)
+GLSLShader::GLSLShader(std::string fileName) : Program(fileName)
 {
 	this->fileName = fileName;
 
@@ -19,7 +19,21 @@ GLSLShader::GLSLShader(std::string fileName)
 
 void GLSLShader::compile()
 {
-
+	GLenum programType;
+	if (type == programTypes_e::vertex)
+		programType = GL_VERTEX_SHADER;
+	else if (type == programTypes_e::fragment)
+		programType = GL_FRAGMENT_SHADER;
+	this->idProgram=glCreateShader(programType);
+	//a�adir codigo
+	GLint fileSize;
+	auto code = readFile(fileSize);
+	
+        
+	glShaderSource(idProgram, 1, &code, &fileSize);
+	glCompileShader(idProgram);
+	std::string c = fileName;
+	checkErrors();
 }
 
 
@@ -37,15 +51,18 @@ void GLSLShader::checkErrors()
 }
 
 
-void GLSLShader::readFile()
+char* GLSLShader::readFile(GLint& fileSize)
 {
 	std::ifstream f(fileName);
 	if (f.is_open()) {
-		std::string code = std::string(std::istreambuf_iterator<char>(f), {});
+		char* code = std::string(std::istreambuf_iterator<char>(f), {}).data();
+		fileSize = std::strlen(code);
 		f.close();
+		return code;
 	}
-	else {
-		std::cout << "ERROR: FICHERO NO ENCONTRADO " <<
-			__FILE__ << ":" << __LINE__ << " " << fileName << "\n";
-	}
+	
+	std::cout << "ERROR: FICHERO NO ENCONTRADO " <<
+		__FILE__ << ":" << __LINE__ << " " << fileName << "\n";
+	return nullptr;
+	
 }

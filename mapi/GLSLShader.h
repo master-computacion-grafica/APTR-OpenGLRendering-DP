@@ -4,7 +4,7 @@
 #include "Program.h"
 
 
-class GLSLShader: Program
+class GLSLShader: public Program
 {
 public:
 
@@ -15,12 +15,10 @@ public:
 
 	// METHODS && FUNCTIONS //
 
-	void readFile() override;
-
 	void compile() override;
 
 	void checkErrors() override;
 
-	void readFile() override;
+	char* readFile(GLint& fileSize) override;
 };
 

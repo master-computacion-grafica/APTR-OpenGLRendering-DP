@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="mapi\GLSLProgram.cpp" />
     <ClCompile Include="mapi\GLSLShader.cpp" />
     <ClCompile Include="mapi\APIS3D_2026.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
@@ -322,6 +323,7 @@
     <ClCompile Include="mapi\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mapi\GLSLProgram.h" />
     <ClInclude Include="mapi\GLSLShader.h" />
     <ClInclude Include="mapi\Camera.h" />
     <ClInclude Include="mapi\common.h" />
@@ -336,6 +338,7 @@
     <ClInclude Include="mapi\Mesh3D.h" />
     <ClInclude Include="mapi\Object.h" />
     <ClInclude Include="mapi\Object3D.h" />
+    <ClInclude Include="mapi\Program.h" />
     <ClInclude Include="mapi\Render.h" />
     <ClInclude Include="mapi\Shader.h" />
     <ClInclude Include="mapi\stb_image.h" />

@@ -1,4 +1,5 @@
 #include "GL4Render.h"
+#include "common.h"
 
 GL4Render::GL4Render(int width, int height)
 {
