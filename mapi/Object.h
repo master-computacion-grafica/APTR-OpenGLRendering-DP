@@ -11,7 +11,7 @@ enum Tipo
 	D3, D2
 };
 
-class Object : Entity
+class Object : public Entity
 {
 private:
 

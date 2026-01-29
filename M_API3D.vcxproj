@@ -314,12 +314,8 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="mapi\Mesh3D.cpp" />
-    <ClCompile Include="mapi\Object.cpp" />
     <ClCompile Include="mapi\Program.cpp" />
     <ClCompile Include="mapi\Shader.cpp" />
-    <ClCompile Include="mapi\System.cpp" />
-    <ClCompile Include="mapi\World.cpp" />
-    <ClCompile Include="Object3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mapi\Camera.h" />
@@ -340,7 +336,7 @@
     <ClInclude Include="mapi\Shader.h" />
     <ClInclude Include="mapi\stb_image.h" />
     <ClInclude Include="mapi\vertex.h" />
-    <ClInclude Include="mapi\System.h" />
+    <ClInclude Include="mapi\World.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\shader.frag" />

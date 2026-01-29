@@ -3,7 +3,7 @@
 #include "mapi/common.h"
 #include "Object.h"
 
-class Object3D : Object
+class Object3D : public Object
 {
 public:
 
