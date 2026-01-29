@@ -24,6 +24,11 @@ World* System::getWorld()
 	return world;
 }
 
+glm::mat4 System::getModelMatrix()
+{
+	return ModelMatrix;
+}
+
 void System::setRender(Render* newRender)
 {
 	render = newRender;
@@ -42,6 +47,11 @@ void System::setEnd(bool newEnd)
 void System::setWorld(World* newWorld)
 {
 	world = newWorld;
+}
+
+void System::setModelMatrix(glm::mat4 newModelMatrix)
+{
+	ModelMatrix = newModelMatrix;
 }
 
 void System::initSystem()

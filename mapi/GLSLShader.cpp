@@ -14,16 +14,21 @@ GLSLShader::GLSLShader(std::string fileName) : Program(fileName)
 	}
 	
 	GLenum programType;
+
 	if (type == programTypes_e::vertex)
 		programType = GL_VERTEX_SHADER;
 	else if (type == programTypes_e::fragment)
 		programType = GL_FRAGMENT_SHADER;
 	this->idProgram=glCreateShader(programType);
+<<<<<<< Updated upstream
 }
 
 
 void GLSLShader::compile()
 {
+=======
+	
+>>>>>>> Stashed changes
 	GLint fileSize;
 	auto code = readFile(fileSize);
 	

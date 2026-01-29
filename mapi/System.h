@@ -23,6 +23,8 @@ private:
 
 	static float deltaTime, newTime, lastTime;
 
+	static glm::mat4 ModelMatrix;
+
 
 public:
 
@@ -37,11 +39,13 @@ public:
 	static InputManager* getInputManager();
 	static bool getEnd();
 	static World* getWorld();
+	static glm::mat4 getModelMatrix();
 
 	static void setRender(Render* newRender);
 	static void setInputManager(InputManager* newInputManager);
 	static void setEnd(bool newEnd);
 	static void setWorld(World* newWorld);
+	static void setModelMatrix(glm::mat4 newModelMatix);
 
 
 	// METHODS && FUNCTIONS //

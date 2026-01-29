@@ -1,6 +1,5 @@
 #pragma once
 
-#include <list>
 #include "mapi/common.h"
 #include "Object.h"
 
