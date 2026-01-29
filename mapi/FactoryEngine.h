@@ -6,12 +6,12 @@
 #include "GLFWInputManager.h"
 #include "GL4Render.h"
 
-enum GraphicsBackend
+static enum GraphicsBackend
 {
 	GL1, GL2, GL3, GL4
 };
 
-enum InputBackend 
+static enum InputBackend 
 {
 	GLFW
 };

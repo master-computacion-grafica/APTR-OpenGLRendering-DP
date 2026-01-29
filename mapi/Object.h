@@ -41,5 +41,10 @@ public:
 	// METHODS && FUNCTIONS //
 
 	virtual void loadDataFromFile(std::string file) = 0;
+
+
+	// DESTRUCTOR //
+
+	virtual ~Object() override = default;
 };
 

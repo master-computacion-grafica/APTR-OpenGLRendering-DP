@@ -9,7 +9,12 @@ public:
 
 	// METHODS && FUCNCTIONS //
 
-	virtual void loadDataFromFile(std::string file) override = 0;
+	void loadDataFromFile(std::string file) override;
 
-	virtual void step(double deltaTime) override = 0;
+	void step(double deltaTime) override;
+
+
+	// DESTRUCTOR //
+
+	~Object3D() override = default;
 };

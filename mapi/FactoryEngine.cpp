@@ -49,11 +49,11 @@ Render* FactoryEngine::getNewRender()
 		break;
 
 	case (int)GL4:
-		activeRender = new GL4Render();
+		activeRender = new GL4Render(640, 480);
 		return activeRender;
 
 	default:
-		std::cout << "ERROR: Input manager type not recognised!" << std::endl;
+		std::cerr << "ERROR: Input manager type not recognised!" << std::endl;
 		break;
 	}
 }

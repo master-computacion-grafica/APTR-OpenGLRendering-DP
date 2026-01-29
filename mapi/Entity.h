@@ -48,4 +48,9 @@ public:
 	}
 
 	virtual void step(double deltaTime) = 0;
+
+
+	// DESTRUCTOR //
+
+	virtual ~Entity() = default;
 };
