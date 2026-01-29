@@ -5,12 +5,12 @@ World::World()
 {
 }
 
-std::vector<Object*>& World::getObjects()
+std::list<Object*>& World::getObjects()
 {
     return this->objects;
 }
 
-void World::setObjects(std::vector<Object*> objects)
+void World::setObjects(std::list<Object*> objects)
 {
     this->objects = objects;
 }
@@ -22,7 +22,8 @@ void World::addObject(Object* obj)
 
 void World::removeObject(Object* obj)
 {
-    auto iterator = objects.begin();
+    objects.remove(obj);
+    /*auto iterator = objects.begin();
 
     while (*iterator != obj && iterator != objects.end()) 
     {
@@ -36,7 +37,7 @@ void World::removeObject(Object* obj)
     else
     {
         std::cerr << "ERROR: Object not found!" << std::endl;
-    }
+    }*/
 }
 
 size_t World::getNumObjects()

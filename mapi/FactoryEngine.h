@@ -49,6 +49,7 @@ public:
 
 	static Render* getNewRender();
 	static InputManager* getNewInputManager();
+	static Material* getNewMaterial();
 
 	static bool isClosed();
 };

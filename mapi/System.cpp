@@ -84,6 +84,9 @@ void System::mainLoop()
 
 		world->update(deltaTime);
 
-		render->drawObjects(&(world->getObjects()))
+		std::vector<Object*> obj_vector{ std::begin(world->getObjects()), std::end(world->getObjects()) };
+		render->drawObjects(&obj_vector);
+
+		delete obj_vector;
 	}
 }

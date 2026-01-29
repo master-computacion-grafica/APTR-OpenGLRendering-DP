@@ -73,6 +73,15 @@ InputManager* FactoryEngine::getNewInputManager()
 }
 
 
+Material* FactoryEngine::getNewMaterial()
+{
+	if (selectedGraphicsBackend == GraphicsBackend::GL4) 
+	{
+		return new GLSLMaterial();
+	}
+}
+
+
 bool FactoryEngine::isClosed()
 {
 	return activeRender->isClosed();

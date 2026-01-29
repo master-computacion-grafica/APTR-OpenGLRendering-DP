@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="mapi\GLSLShader.cpp" />
     <ClCompile Include="mapi\APIS3D_2026.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -316,8 +317,12 @@
     <ClCompile Include="mapi\Mesh3D.cpp" />
     <ClCompile Include="mapi\Program.cpp" />
     <ClCompile Include="mapi\Shader.cpp" />
+    <ClCompile Include="mapi\Object3D.cpp" />
+    <ClCompile Include="mapi\System.cpp" />
+    <ClCompile Include="mapi\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mapi\GLSLShader.h" />
     <ClInclude Include="mapi\Camera.h" />
     <ClInclude Include="mapi\common.h" />
     <ClInclude Include="mapi\Entity.h" />
@@ -331,12 +336,13 @@
     <ClInclude Include="mapi\Mesh3D.h" />
     <ClInclude Include="mapi\Object.h" />
     <ClInclude Include="mapi\Object3D.h" />
-    <ClInclude Include="mapi\Program.h" />
     <ClInclude Include="mapi\Render.h" />
     <ClInclude Include="mapi\Shader.h" />
     <ClInclude Include="mapi\stb_image.h" />
+    <ClInclude Include="mapi\System.h" />
     <ClInclude Include="mapi\vertex.h" />
     <ClInclude Include="mapi\World.h" />
+    <ClInclude Include="mapi\RenderProgram.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\shader.frag" />

@@ -33,9 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mapi\Object.cpp">
-      <Filter>Archivos de origen\mapi</Filter>
-    </ClCompile>
     <ClCompile Include="mapi\Program.cpp">
       <Filter>Archivos de origen\mapi</Filter>
     </ClCompile>
@@ -48,20 +45,8 @@
     <ClCompile Include="mapi\Camera.cpp">
       <Filter>Archivos de origen\mapi</Filter>
     </ClCompile>
-    <ClCompile Include="mapi\GLTexture.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="mapi\APIS3D_2026.cpp">
       <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="mapi\Material.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="mapi\System.cpp">
-      <Filter>Archivos de origen\mapi</Filter>
-    </ClCompile>
-    <ClCompile Include="mapi\World.cpp">
-      <Filter>Archivos de origen\mapi</Filter>
     </ClCompile>
     <ClCompile Include="mapi\Mesh3D.cpp">
       <Filter>Archivos de origen\mapi</Filter>
@@ -73,9 +58,24 @@
       <Filter>Archivos de origen\mapi</Filter>
     </ClCompile>
     <ClCompile Include="mapi\FactoryEngine.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\mapi</Filter>
     </ClCompile>
-    <ClCompile Include="Object3D.cpp">
+    <ClCompile Include="mapi\GLSLShader.cpp">
+      <Filter>Archivos de origen\mapi</Filter>
+    </ClCompile>
+    <ClCompile Include="mapi\GLTexture.cpp">
+      <Filter>Archivos de origen\mapi</Filter>
+    </ClCompile>
+    <ClCompile Include="mapi\Material.cpp">
+      <Filter>Archivos de origen\mapi</Filter>
+    </ClCompile>
+    <ClCompile Include="mapi\Object3D.cpp">
+      <Filter>Archivos de origen\mapi</Filter>
+    </ClCompile>
+    <ClCompile Include="mapi\System.cpp">
+      <Filter>Archivos de origen\mapi</Filter>
+    </ClCompile>
+    <ClCompile Include="mapi\World.cpp">
       <Filter>Archivos de origen\mapi</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,9 +84,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="mapi\Object.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="mapi\Program.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="mapi\Shader.h">
@@ -125,9 +122,6 @@
     <ClInclude Include="mapi\Render.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="mapi\System.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="mapi\Object3D.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -135,6 +129,21 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="mapi\Entity.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="mapi\World.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="mapi\Program.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="mapi\RenderProgram.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="mapi\GLSLShader.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="mapi\System.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

@@ -11,7 +11,7 @@ private:
 
 	// ATTRIBUTES //
 
-	std::vector<Object*> objects;
+	std::list<Object*> objects;
 
 
 public:
@@ -23,9 +23,9 @@ public:
 
 	// GETTERS && SETTERS //
 
-	std::vector<Object*>& getObjects();
+	std::list<Object*>& getObjects();
 
-	void setObjects(std::vector<Object*> objects);
+	void setObjects(std::list<Object*> objects);
 
 
 	// METHODS && FUNCTIONS //
