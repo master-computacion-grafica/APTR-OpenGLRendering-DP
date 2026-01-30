@@ -11,7 +11,7 @@ public:
 
 	void loadDataFromFile(std::string file) override;
 
-	void step(double deltaTime) override;
+	virtual void step(double deltaTime) = 0;
 
 
 	// DESTRUCTOR //

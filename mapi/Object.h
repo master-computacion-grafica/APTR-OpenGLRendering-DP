@@ -3,8 +3,6 @@
 #include "mapi/common.h"
 #include "Mesh3D.h"
 #include "Entity.h"
-//#include "vertex.h"
-//#include "Material.h"
 
 enum Tipo
 {

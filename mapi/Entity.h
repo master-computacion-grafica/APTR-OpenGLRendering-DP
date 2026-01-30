@@ -4,7 +4,7 @@
 
 class Entity
 {
-private:
+protected:
 
 	// ATTRIBUTES //
 

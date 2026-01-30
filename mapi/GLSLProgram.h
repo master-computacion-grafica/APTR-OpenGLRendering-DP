@@ -17,6 +17,6 @@ public:
     void setVec4(std::string name, const glm::vec4& vec) override;
     void setMatrix(std::string name, const glm::mat4& matrix) override;
     
-    void readVarList();
-    unsigned int getVarLocation(std::string varName);
+    void readVarList() override;
+    unsigned int getVarLocation(std::string varName) override;
 };

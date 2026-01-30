@@ -23,9 +23,8 @@ void GLSLProgram::linkProgram()
             return;
         }
         glAttachShader(renderProgramId, shader->getIdProgram());
-        
-        glLinkProgram(renderProgramId);
     }
+    glLinkProgram(renderProgramId);
 }
 
 void GLSLProgram::use()

@@ -22,7 +22,7 @@ public:
     
     virtual bool isPressed(char key) = 0;
     
-    virtual void setKMCursorPos(double x, double y);
+    virtual void setInputManagerCursorPos(double x, double y) = 0;
     
     // DESTRUCTOR //
     virtual ~InputManager() = default;

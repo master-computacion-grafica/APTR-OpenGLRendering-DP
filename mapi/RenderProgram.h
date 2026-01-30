@@ -47,4 +47,7 @@ public:
 	virtual void setVec3(std::string name, const glm::vec3& vec) = 0;
 	virtual void setVec4(std::string name, const glm::vec4& vec) = 0;
 	virtual void setMatrix(std::string name, const glm::mat4& matrix) = 0;
+
+	virtual void readVarList() = 0;
+	virtual unsigned int getVarLocation(std::string varName) = 0;
 };

@@ -28,11 +28,6 @@ private:
 
 public:
 
-	// CONSTRUCTOR //
-
-	System();
-
-
 	// GETTERS && SETTERS //
 
 	static Render* getRender();

@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="mapi\GLSLMaterial.cpp" />
     <ClCompile Include="mapi\GLSLProgram.cpp" />
     <ClCompile Include="mapi\GLSLShader.cpp" />
     <ClCompile Include="mapi\APIS3D_2026.cpp">
@@ -321,8 +322,10 @@
     <ClCompile Include="mapi\Object3D.cpp" />
     <ClCompile Include="mapi\System.cpp" />
     <ClCompile Include="mapi\World.cpp" />
+    <ClCompile Include="TrianguloRot.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mapi\GLSLMaterial.h" />
     <ClInclude Include="mapi\GLSLProgram.h" />
     <ClInclude Include="mapi\GLSLShader.h" />
     <ClInclude Include="mapi\Camera.h" />
@@ -346,6 +349,7 @@
     <ClInclude Include="mapi\vertex.h" />
     <ClInclude Include="mapi\World.h" />
     <ClInclude Include="mapi\RenderProgram.h" />
+    <ClInclude Include="TrianguloRot.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\shader.frag" />

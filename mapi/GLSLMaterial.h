@@ -2,6 +2,7 @@
 
 #include "Material.h"
 #include "GLSLProgram.h"
+#include "GLSLShader.h"
 
 
 class GLSLMaterial: Material
