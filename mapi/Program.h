@@ -22,10 +22,6 @@ protected:
 
 public:
 
-	// CONSTRUCTOR //
-
-	Program(std::string fileName);
-
 
 	// GETTERS && SETTERS //
 

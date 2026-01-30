@@ -20,10 +20,6 @@ protected:
 public:
 	virtual ~RenderProgram() = default;
 
-	// CONSTRUCTOR //
-
-	RenderProgram();
-
 
 	// GETTERS && SETTERS //
 

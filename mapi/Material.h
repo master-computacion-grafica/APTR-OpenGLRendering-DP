@@ -14,9 +14,12 @@ protected:
 
 public:
 
-	// CONSTRUCTOR //
 
-	Material();
+	// GETTERS && SETTERS //
+
+	RenderProgram* getProgram() { return this->program; }
+
+	void setProgram(RenderProgram* program) { this->program = program; }
 
 
 	// METHODS && FUNCTIONS //

@@ -4,7 +4,9 @@
 #include "Render.h"
 #include "InputManager.h"
 #include "GLFWInputManager.h"
+#include "GLSLMaterial.h"
 #include "GL4Render.h"
+
 
 static enum GraphicsBackend
 {
@@ -30,10 +32,6 @@ private:
 
 
 public:
-
-	// CONSTRUCTOR //
-
-	FactoryEngine();
 
 
 	// GETTERS && SETTERS //

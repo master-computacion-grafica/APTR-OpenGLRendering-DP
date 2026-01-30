@@ -1,8 +1,5 @@
 #include "System.h"
 
-System::System()
-{
-}
 
 Render* System::getRender()
 {
@@ -97,6 +94,6 @@ void System::mainLoop()
 		std::vector<Object*> obj_vector{ std::begin(world->getObjects()), std::end(world->getObjects()) };
 		render->drawObjects(&obj_vector);
 
-		delete obj_vector;
+		obj_vector = {};
 	}
 }

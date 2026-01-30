@@ -1,9 +1,5 @@
 #include "FactoryEngine.h"
 
-FactoryEngine::FactoryEngine()
-{
-}
-
 
 GraphicsBackend FactoryEngine::getSelectedGraphicsBackend()
 {
@@ -63,11 +59,11 @@ InputManager* FactoryEngine::getNewInputManager()
 {
 	switch (selectedInputBackend)
 	{
-	case (int)GLFW:
+	case InputBackend::GLFW:
 		return new GLFWInputManager();
 
 	default:
-		std::cout << "ERROR: Input manager type not recognised!" << std::endl;
+		std::cout << "ERROR: Input manager backend type not recognised!" << std::endl;
 		break;
 	}
 }
@@ -75,9 +71,14 @@ InputManager* FactoryEngine::getNewInputManager()
 
 Material* FactoryEngine::getNewMaterial()
 {
-	if (selectedGraphicsBackend == GraphicsBackend::GL4) 
+	switch (selectedGraphicsBackend)
 	{
+	case GraphicsBackend::GL4:
 		return new GLSLMaterial();
+
+	default:
+		std::cout << "ERROR: Graphics backend type not recognised!" << std::endl;
+		break;
 	}
 }
 

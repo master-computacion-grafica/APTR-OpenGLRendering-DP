@@ -51,8 +51,9 @@ void GL4Render::drawObjects(std::vector<Object*>* objs)
         //calcular matriz modelo
         auto model = obj->getModelMatrix();
         auto mat = obj->getMesh()->getMaterial();
+        auto renderProgram = mat->getProgram();
 		
-        mat->renderProgram->activate();
+        renderProgram->use();
 		
         //mat->renderProgram->setMVP(cam.cameraProjection* cam.cameraView * model);
 
@@ -62,12 +63,12 @@ void GL4Render::drawObjects(std::vector<Object*>* objs)
         glBindBuffer(GL_ARRAY_BUFFER, bo.vertexArrayId);//activar lista de v�rtices
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bo.vertexIdxArrayId);//activar lista de indices de v�rtices
         //describir buffers
-        mat->renderProgram->setAttributeMetaData("vPos", 4, GL_FLOAT, false, sizeof(vertex_t), (void*)offsetof(vertex_t, vPosition));
-        mat->renderProgram->setAttributeMetaData("vColor", 4, GL_FLOAT, false, sizeof(vertex_t), (void*)offsetof(vertex_t, vColor));
-        mat->renderProgram->setAttributeMetaData("vTexCoord", 2, GL_FLOAT, false, sizeof(vertex_t), (void*)offsetof(vertex_t, vTexCoord));
-        //si hay textura, activarla
-        if (mat->texture)
-            mat->renderProgram->setTextureData(0, mat->texture->GlTextID, GL_TEXTURE_2D);
+        renderProgram->setVertexAttrib("vPos", sizeof(vertex_t), (void*)offsetof(vertex_t, vPosition), 4, GL_FLOAT);
+        renderProgram->setVertexAttrib("vColor", sizeof(vertex_t), (void*)offsetof(vertex_t, vColor), 4, GL_FLOAT);
+        renderProgram->setVertexAttrib("vTexCoord", sizeof(vertex_t), (void*)offsetof(vertex_t, vTexCoord), 2, GL_FLOAT);
+        ////si hay textura, activarla
+        //if (mat->texture)
+        //    renderProgram->setTextureData(0, mat->texture->GlTextID, GL_TEXTURE_2D);
 
         //ordenar a dibujar
         glDrawElements(GL_TRIANGLES, obj->getMesh()->getTriangleIndexList()->size(), GL_UNSIGNED_INT, nullptr);

@@ -1,6 +1,6 @@
 #include "GLSLShader.h"
 
-GLSLShader::GLSLShader(std::string fileName) : Program(fileName)
+GLSLShader::GLSLShader(std::string fileName)
 {
     this->fileName = fileName;
 

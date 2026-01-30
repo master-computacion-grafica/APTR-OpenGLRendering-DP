@@ -5,7 +5,7 @@
 #include "GLSLShader.h"
 
 
-class GLSLMaterial: Material
+class GLSLMaterial: public Material
 {
 public:
 

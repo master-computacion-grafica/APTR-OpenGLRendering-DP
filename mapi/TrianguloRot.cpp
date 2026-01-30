@@ -36,12 +36,12 @@ void TrianguloRot::step(double deltaTime)
 
 	if (System::getInputManager()->isPressed(GLFW_KEY_A))
 	{
-		rotation.y += angularVelocity * deltaTime;
+		rotation.y += angularVelocity * (float)deltaTime;
 	} 
 	
 	if (System::getInputManager()->isPressed(GLFW_KEY_D))
 	{
-		rotation.y -= angularVelocity * deltaTime;
+		rotation.y -= angularVelocity * (float)deltaTime;
 	}
 
 	if (System::getInputManager()->isPressed(GLFW_KEY_E))

@@ -66,9 +66,6 @@
     <ClCompile Include="mapi\GLTexture.cpp">
       <Filter>Archivos de origen\mapi</Filter>
     </ClCompile>
-    <ClCompile Include="mapi\Material.cpp">
-      <Filter>Archivos de origen\mapi</Filter>
-    </ClCompile>
     <ClCompile Include="mapi\Object3D.cpp">
       <Filter>Archivos de origen\mapi</Filter>
     </ClCompile>
@@ -76,6 +73,15 @@
       <Filter>Archivos de origen\mapi</Filter>
     </ClCompile>
     <ClCompile Include="mapi\World.cpp">
+      <Filter>Archivos de origen\mapi</Filter>
+    </ClCompile>
+    <ClCompile Include="mapi\TrianguloRot.cpp">
+      <Filter>Archivos de origen\mapi</Filter>
+    </ClCompile>
+    <ClCompile Include="mapi\GLSLProgram.cpp">
+      <Filter>Archivos de origen\mapi</Filter>
+    </ClCompile>
+    <ClCompile Include="mapi\GLSLMaterial.cpp">
       <Filter>Archivos de origen\mapi</Filter>
     </ClCompile>
   </ItemGroup>
@@ -144,6 +150,15 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="mapi\System.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="mapi\GLSLMaterial.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="mapi\GLSLProgram.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="mapi\TrianguloRot.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

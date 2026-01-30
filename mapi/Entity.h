@@ -16,10 +16,6 @@ protected:
 
 public:
 
-	// CONTRUCTOR //
-
-	Entity();
-
 
 	// GETTERS && SETTERS //
 

@@ -22,10 +22,6 @@ private:
 
 public:
 
-	// CONSTRUCTOR //
-
-	Object();
-
 
 	// GETTERS && SETTERS //
 
