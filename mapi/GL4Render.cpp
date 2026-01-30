@@ -9,13 +9,20 @@ GL4Render::GL4Render(int width, int height)
 
 void GL4Render::init()
 {
-    window = glfwCreateWindow(width, height, "Practica APIS3D",nullptr, nullptr);
-    glfwMakeContextCurrent(window);
+    if (glfwInit() != GLFW_TRUE)
+    {	
+        std::cout << "ERROR iniciando glfw\n";
+    }
+    else
+    {
+        window = glfwCreateWindow(width, height, "Practica APIS3D",nullptr, nullptr);
+        glfwMakeContextCurrent(window);
     
-    gladLoadGL(glfwGetProcAddress);
+        gladLoadGL(glfwGetProcAddress);
 		
-    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-    glEnable(GL_DEPTH_TEST);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+        //glEnable(GL_DEPTH_TEST);
+    }
 }
 
 void GL4Render::setupObject(Object* obj)

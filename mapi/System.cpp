@@ -57,8 +57,8 @@ void System::initSystem()
 	FactoryEngine::setSelectedInputBackend(InputBackend::GLFW);
 
 	render = FactoryEngine::getNewRender();
-	inputManager = FactoryEngine::getNewInputManager();
 	render->init();
+	inputManager = FactoryEngine::getNewInputManager();
 	inputManager->init();
 
 	end = false;

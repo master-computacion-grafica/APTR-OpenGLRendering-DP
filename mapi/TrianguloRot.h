@@ -4,7 +4,7 @@
 #include "Object3D.h"
 #include "System.h"
 
-class TrianguloRot : Object3D
+class TrianguloRot : public Object3D
 {
 public:
 
@@ -17,7 +17,7 @@ public:
 
 	
 
-	// Heredado vía Object3D
+	// Heredado vï¿½a Object3D
 	void step(double deltaTime) override;
 
 };

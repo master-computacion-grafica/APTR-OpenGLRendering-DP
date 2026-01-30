@@ -21,6 +21,7 @@
 //	}
 //}
 
+#define GLAD_BIN
 #include "FactoryEngine.h"
 #include "System.h"
 #include "TrianguloRot.h"
@@ -36,8 +37,10 @@ int main(int argc, char** argv)
 	System::initSystem();
 
 	//Crear objeto TrianguloRot
-	TrianguloRot triangle = TrianguloRot();
+	TrianguloRot* triangle = new TrianguloRot();
 
+	System::addObject(triangle);
+	
 	System::mainLoop();
 }
 

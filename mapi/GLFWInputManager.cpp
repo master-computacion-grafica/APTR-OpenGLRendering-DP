@@ -1,17 +1,17 @@
 #include "GLFWInputManager.h"
 
+#include <GLFW/glfw3.h>
+
+#include "GL4Render.h"
+#include "System.h"
+
 void GLFWInputManager::init()
 {
+    window = ((GL4Render*)System::getRender())->window;
     glfwSetKeyCallback(window, windowKeyboardEvent);//init de funcion de teclado
     glfwSetMouseButtonCallback(window, mouseButtonEvent);//init de funcion boton raton
     glfwSetCursorPosCallback(window, mousePosEvent);//init posicion de raton
     setInputManagerCursorPos(0, 0);
-}
-
-void GLFWInputManager::initGLFWInputManager(GLFWwindow* window)
-{
-    this->window = window;
-    init();
 }
 
 void GLFWInputManager::windowKeyboardEvent(GLFWwindow* window, int key, int scancode, int action, int mods)

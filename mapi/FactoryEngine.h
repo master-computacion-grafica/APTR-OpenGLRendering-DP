@@ -1,11 +1,8 @@
 #pragma once
 
-#include "mapi/common.h"
 #include "Render.h"
 #include "InputManager.h"
-#include "GLFWInputManager.h"
 #include "GLSLMaterial.h"
-#include "GL4Render.h"
 
 
 static enum GraphicsBackend
@@ -18,17 +15,17 @@ static enum InputBackend
 	GLFW
 };
 
-static class FactoryEngine
+class FactoryEngine
 {
 private:
 
 	// ATTRIBUTES //
 
-	static GraphicsBackend  selectedGraphicsBackend;
+	static inline GraphicsBackend  selectedGraphicsBackend;
 
-	static InputBackend selectedInputBackend;
+	static inline InputBackend selectedInputBackend;
 
-	static Render* activeRender;
+	static inline Render* activeRender;
 
 
 public:

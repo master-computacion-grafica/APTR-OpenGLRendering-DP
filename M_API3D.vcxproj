@@ -238,7 +238,6 @@
     <ClCompile Include="mapi\FactoryEngine.cpp" />
     <ClCompile Include="mapi\GL4Render.cpp" />
     <ClCompile Include="mapi\GLFWInputManager.cpp" />
-    <ClCompile Include="mapi\GLFWKeyManager.cpp" />
     <ClCompile Include="mapi\GLTexture.cpp" />
     <ClCompile Include="mapi\Mesh3D.cpp" />
     <ClCompile Include="mapi\Program.cpp" />
@@ -258,7 +257,6 @@
     <ClInclude Include="mapi\FactoryEngine.h" />
     <ClInclude Include="mapi\GL4Render.h" />
     <ClInclude Include="mapi\GLFWInputManager.h" />
-    <ClInclude Include="mapi\GLFWKeyManager.h" />
     <ClInclude Include="mapi\GLTexture.h" />
     <ClInclude Include="mapi\InputManager.h" />
     <ClInclude Include="mapi\Material.h" />

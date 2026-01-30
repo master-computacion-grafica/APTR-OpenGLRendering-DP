@@ -8,23 +8,23 @@
 #include "FactoryEngine.h"
 
 
-static class System
+class System
 {
 private:
 
 	// ATTRIBUTES //
 
-	static Render* render;
+	static inline Render* render;
 
-	static InputManager* inputManager;
+	static inline InputManager* inputManager;
 
-	static bool end;
+	static inline bool end;
 
-	static World* world;
+	static inline World* world;
 
-	static float deltaTime, newTime, lastTime;
+	static inline float deltaTime, newTime, lastTime;
 
-	static glm::mat4 ModelMatrix;
+	static inline glm::mat4 ModelMatrix;
 
 
 public:

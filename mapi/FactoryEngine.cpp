@@ -1,4 +1,6 @@
 #include "FactoryEngine.h"
+#include "GL4Render.h"
+#include "GLFWInputManager.h"
 
 
 GraphicsBackend FactoryEngine::getSelectedGraphicsBackend()
