@@ -59,5 +59,6 @@ void World::update(float deltaTime)
     for (Object* obj : objects)
     {
         obj->step(deltaTime);
+        obj->computeModelMatrix();
     }
 }

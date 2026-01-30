@@ -93,6 +93,8 @@ void System::mainLoop()
 
 		std::vector<Object*> obj_vector{ std::begin(world->getObjects()), std::end(world->getObjects()) };
 		render->drawObjects(&obj_vector);
+		
+		inputManager->updateEvents();
 
 		obj_vector = {};
 	}

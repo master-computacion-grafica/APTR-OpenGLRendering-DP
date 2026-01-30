@@ -19,6 +19,6 @@ public:
 
 	void checkErrors() override;
 
-	char* readFile(GLint& fileSize) override;
+	std::string readFile() override;
 };
 

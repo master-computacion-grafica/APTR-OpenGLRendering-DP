@@ -53,6 +53,7 @@ void GL4Render::removeObject(Object* obj)
 
 void GL4Render::drawObjects(std::vector<Object*>* objs)
 {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     for (auto& obj : *objs)
     {
         //calcular matriz modelo
@@ -71,8 +72,9 @@ void GL4Render::drawObjects(std::vector<Object*>* objs)
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bo.vertexIdxArrayId);//activar lista de indices de v�rtices
         //describir buffers
         renderProgram->setVertexAttrib("vPos", sizeof(vertex_t), (void*)offsetof(vertex_t, vPosition), 4, GL_FLOAT);
-        renderProgram->setVertexAttrib("vColor", sizeof(vertex_t), (void*)offsetof(vertex_t, vColor), 4, GL_FLOAT);
-        renderProgram->setVertexAttrib("vTexCoord", sizeof(vertex_t), (void*)offsetof(vertex_t, vTexCoord), 2, GL_FLOAT);
+        renderProgram->setMatrix("mMat", model);
+        //renderProgram->setVertexAttrib("vColor", sizeof(vertex_t), (void*)offsetof(vertex_t, vColor), 4, GL_FLOAT);
+        //renderProgram->setVertexAttrib("vTexCoord", sizeof(vertex_t), (void*)offsetof(vertex_t, vTexCoord), 2, GL_FLOAT);
         ////si hay textura, activarla
         //if (mat->texture)
         //    renderProgram->setTextureData(0, mat->texture->GlTextID, GL_TEXTURE_2D);
@@ -80,6 +82,7 @@ void GL4Render::drawObjects(std::vector<Object*>* objs)
         //ordenar a dibujar
         glDrawElements(GL_TRIANGLES, obj->getMesh()->getTriangleIndexList()->size(), GL_UNSIGNED_INT, nullptr);
     }
+    glfwSwapBuffers(window);
 }
 
 bool GL4Render::isClosed()

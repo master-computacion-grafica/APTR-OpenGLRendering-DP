@@ -5,8 +5,6 @@ Mesh3D::Mesh3D()
     meshID = meshCounter++;
     
     colorRGBA = {1,1,1,1};
-    
-    vVertList;
 }
 
 int Mesh3D::getMeshID()

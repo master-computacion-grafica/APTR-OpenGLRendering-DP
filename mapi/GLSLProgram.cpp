@@ -7,8 +7,8 @@ GLSLProgram::~GLSLProgram()
 
 void GLSLProgram::addProgram(std::string fileName)
 {
-    GLSLShader shader(fileName);
-    shaders.push_back(&shader);
+    GLSLShader* shader = new GLSLShader(fileName);
+    shaders.push_back(shader);
 }
 
 void GLSLProgram::linkProgram()
