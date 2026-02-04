@@ -14,7 +14,7 @@ public:
         mods);
     static void mousePosEvent(GLFWwindow* window, double xpos, double ypos);
     static void mouseButtonEvent(GLFWwindow* window, int button, int action, int mods);
-    static void updateEvents();
+    void updateEvents() override;
     bool isPressed(char key) override;
     void setInputManagerCursorPos(double x, double y) override;
 };

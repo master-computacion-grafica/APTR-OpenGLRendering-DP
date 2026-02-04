@@ -24,10 +24,9 @@ GLSLShader::GLSLShader(std::string fileName)
 
 void GLSLShader::compile()
 {
-    GLint fileSize;
-    auto code = readFile(fileSize);
-
-    glShaderSource(idProgram, 1, &code, &fileSize);
+    auto code = readFile();
+    const char* codePtr = code.c_str();
+    glShaderSource(idProgram, 1, &codePtr, nullptr);
     glCompileShader(idProgram);
 
     checkErrors();
@@ -51,17 +50,16 @@ void GLSLShader::checkErrors()
 }
 
 
-char* GLSLShader::readFile(GLint& fileSize)
+std::string GLSLShader::readFile()
 {
     std::ifstream f(fileName);
     if (f.is_open()) {
-        char* code = std::string(std::istreambuf_iterator<char>(f), {}).data();
-        fileSize = std::strlen(code);
+        std::string code = std::string(std::istreambuf_iterator<char>(f), {});
         f.close();
         return code;
     }
 
     std::cout << "ERROR: FICHERO NO ENCONTRADO " << __FILE__ << ":" << __LINE__ << " " << fileName << "\n";
-    return nullptr;
+    return "";
 
 }

@@ -37,7 +37,7 @@ public:
 
 	// METHODS && FUNCTIONS //
 
-	virtual char* readFile(GLint& fileSize) = 0;
+	virtual std::string readFile() = 0;
 
 	virtual void compile() = 0;
 

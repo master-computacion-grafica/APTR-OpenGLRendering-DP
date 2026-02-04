@@ -24,6 +24,8 @@ public:
     
     virtual void setInputManagerCursorPos(double x, double y) = 0;
     
+    virtual void updateEvents() = 0;
+    
     // DESTRUCTOR //
     virtual ~InputManager() = default;
 };
