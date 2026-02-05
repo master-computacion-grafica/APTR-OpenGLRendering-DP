@@ -5,5 +5,5 @@
 typedef struct {
     glm::vec4 vPosition; //posicion vertice XYZW
     glm::vec4 vColor; //color RGBA
-    glm::vec2 vTexCoord; //coordenadas de textura por vértice
+    glm::vec2 vTexCoords; //coordenadas de textura por vertice
 }vertex_t;

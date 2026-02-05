@@ -1,3 +1,29 @@
+#include "Camera.h"
+
+Camera::Camera(projectionType_e type, glm::vec3 position, glm::vec3 lookAt, glm::vec3 up)
+{
+    this->type = type;
+    this->position = glm::vec4(position, 1.0);
+    this->lookAt = lookAt;
+    this->up = up;
+
+    this->fovY = glm::radians(45.0);
+    this->aspectRatio = 4.0f / 3.0f;
+    this->near = 0.01f;
+    this->far = 1000.0f;
+}
+
+void Camera::computeProjectionMatrix()
+{
+    projection = glm::perspective(fovY, aspectRatio, near, far);
+}
+
+void Camera::computeViewMatrix()
+{
+    view = glm::lookAt(glm::vec3(position), glm::vec3(lookAt), glm::vec3(up));
+}
+
+
 // #include "Camera.h"
 // #include "GLFWKeyManager.h"
 //

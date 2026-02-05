@@ -277,6 +277,10 @@
     <None Include="data\shader.frag" />
     <None Include="data\shader.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\front.png" />
+    <Content Include="data\top.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
