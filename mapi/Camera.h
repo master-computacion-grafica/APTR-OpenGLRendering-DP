@@ -31,7 +31,13 @@ public:
 
     // CONSTRUCTOR //
 
-    Camera(projectionType_e type, glm::vec3 position, glm::vec3 lookAt, glm::vec3 up);
+    Camera(projectionType_e type, glm::vec3 position, glm::vec3 lookAt, glm::vec3 up)
+    {
+        this->type = type;
+        this->position = glm::vec4(position, 1.0f);
+        this->lookAt = lookAt;
+        this->up = up;
+    }
 
     
     // GETTERS && SETTERS //
