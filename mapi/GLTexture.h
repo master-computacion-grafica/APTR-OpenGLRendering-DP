@@ -1,5 +1,25 @@
-// #pragma once
-// #include "common.h"
+#pragma once
+#include "Texture.h"
+
+class GLTexture : public Texture
+{
+private:
+    GLuint glTextureID; 
+protected:
+    ~GLTexture() = default;
+
+public:
+    void update() override;
+};
+
+
+
+
+
+
+
+
+
 //
 // using namespace std;
 //
@@ -32,3 +52,4 @@
 //
 // };
 //
+

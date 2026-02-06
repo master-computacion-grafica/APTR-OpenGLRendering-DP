@@ -1,10 +1,12 @@
 #pragma once
+#define STB_IMAGE_IMPLEMENTATION
 #include "common.h"
 #include "stb_image.h"
 
 class Texture
 {
 protected:
+    ~Texture() = default;
     // ATTRIBUTES //
     static inline glm::uint32_t textureCounter = 0;
     
