@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 	// Inicializar la clase System
 	System::initSystem();
 
-	CameraKeyboard* cam = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
+	CameraKeyboard* cam = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(0.0f, 0.0f, -10.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
 	World* world = System::getWorld();
 	world->addCamera(cam);
 	world->setActiveCamera(world->getCameraIndex(cam));

@@ -39,6 +39,8 @@ void CameraKeyboard::step(double deltaTime)
             direction.y += 1;
         }
 
+        if (direction == glm::vec4(0, 0, 0, 0)) return;
+        
         direction = glm::normalize(direction);
         direction = direction * (speed * static_cast<float>(deltaTime));
 

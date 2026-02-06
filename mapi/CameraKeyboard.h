@@ -10,6 +10,7 @@ private:
     // ATTRIBUTES //
 
     float speed;
+    float rotSpeed;
     glm::vec4 direction;
 
 
