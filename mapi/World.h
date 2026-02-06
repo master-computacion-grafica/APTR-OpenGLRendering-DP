@@ -45,7 +45,7 @@ public:
 
 	Object* getObject(size_t index);
 
-	void update(float deltaTime);
+	void update(double deltaTime);
 
 	void addCamera(Camera* cam);
 

@@ -270,6 +270,7 @@
     <ClInclude Include="mapi\Shader.h" />
     <ClInclude Include="mapi\stb_image.h" />
     <ClInclude Include="mapi\System.h" />
+    <ClInclude Include="mapi\Texture.h" />
     <ClInclude Include="mapi\vertex.h" />
     <ClInclude Include="mapi\World.h" />
     <ClInclude Include="mapi\RenderProgram.h" />

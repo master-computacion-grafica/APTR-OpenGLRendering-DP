@@ -22,7 +22,7 @@ private:
 
 	static inline World* world;
 
-	static inline float deltaTime, newTime, lastTime;
+	static inline double deltaTime, newTime, lastTime;
 
 	static inline glm::mat4 ModelMatrix;
 

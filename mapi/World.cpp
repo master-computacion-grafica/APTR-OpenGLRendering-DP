@@ -69,7 +69,7 @@ Object* World::getObject(size_t index)
     return *iterator;
 }
 
-void World::update(float deltaTime)
+void World::update(double deltaTime)
 {
     for (Object* obj : objects)
     {
@@ -81,7 +81,7 @@ void World::update(float deltaTime)
     {
         cam->step(deltaTime);
         cam->computeViewMatrix();
-        cam->computeModelMatrix();
+        cam->computeProjectionMatrix();
     }
 }
 

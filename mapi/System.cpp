@@ -85,7 +85,7 @@ void System::mainLoop()
 
 	while (!end)
 	{
-		newTime = static_cast<float>(glfwGetTime());
+		newTime = glfwGetTime();
 		deltaTime = newTime - lastTime;
 		lastTime = newTime;
 
