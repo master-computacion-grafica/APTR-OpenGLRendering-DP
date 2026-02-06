@@ -62,9 +62,6 @@ public:
     void computeProjectionMatrix();
 
     void computeViewMatrix();
-    
-    virtual void step(float timeStep) = 0;
-    void step(double deltaTime) override;
 };
 
 //     glm::vec4  pos;
