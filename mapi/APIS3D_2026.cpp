@@ -22,6 +22,7 @@
 //}
 
 #define GLAD_BIN
+#define STB_IMAGE_IMPLEMENTATION
 #include "FactoryEngine.h"
 #include "System.h"
 #include "TrianguloRot.h"

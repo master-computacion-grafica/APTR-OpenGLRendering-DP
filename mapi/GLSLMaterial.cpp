@@ -1,7 +1,7 @@
 #include "GLSLMaterial.h"
 #include "System.h"
 #include "GLSLProgram.h"
-//#include "GLSLShader.h"
+
 
 
 GLSLMaterial::GLSLMaterial()
@@ -42,7 +42,7 @@ void GLSLMaterial::prepare()
 	World* world = System::getWorld();
 	Camera* cam = world->getCamera(world->getActiveCamera());
 
-	glm::mat4 MVP = cam->getModelMatrix() * cam->getView() * cam->getProjection();
+	glm::mat4 MVP = cam->getProjection() * cam->getView() * System::getModelMatrix();
 	program->setMatrix("MVP", MVP);
 	
 	program->readVarList();

@@ -1,6 +1,7 @@
 #include "GLSLProgram.h"
 
 #include "GLSLShader.h"
+#include "GLTexture.h"
 
 GLSLProgram::~GLSLProgram()
 = default;
@@ -19,7 +20,7 @@ void GLSLProgram::linkProgram()
         shader->compile();
         if(!shader->isCompiled())
         {
-            std::cerr << "ERROR: Shader not compiled" << std::endl;
+            std::cerr << "ERROR: Shader not compiled" << '\n';
             return;
         }
         glAttachShader(renderProgramId, shader->getIdProgram());
@@ -82,6 +83,29 @@ void GLSLProgram::setMatrix(std::string name, const glm::mat4& matrix)
     glUniformMatrix4fv(varList[name], 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
+void GLSLProgram::setColorTextEnable()
+{
+    glUniform1i(varList["useColorText"], 1);
+}
+
+void GLSLProgram::setColorTextDisable()
+{
+    glUniform1i(varList["useColorText"], 0);
+}
+
+void GLSLProgram::bindColorTextureSample(int binding, Texture* texture)
+{
+    glActiveTexture(GL_TEXTURE0 + binding);
+    GLenum textureType;
+    if (texture->isCubeMap())
+        textureType = GL_TEXTURE_CUBE_MAP;
+    else
+        textureType = GL_TEXTURE_2D;
+    glBindTexture(textureType, dynamic_cast<GLTexture*>(texture)->getGlTextureID());
+    glUniform1i(varList["colorText"], binding);
+    
+}
+
 void GLSLProgram::readVarList()
 {
     int numAttributes = 0;
@@ -114,3 +138,7 @@ unsigned int GLSLProgram::getVarLocation(std::string varName)
     return -1;
     
 }
+
+
+
+

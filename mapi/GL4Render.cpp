@@ -1,5 +1,6 @@
 #include "GL4Render.h"
 #include "common.h"
+#include "System.h"
 
 GL4Render::GL4Render(int width, int height)
 {
@@ -57,7 +58,7 @@ void GL4Render::drawObjects(std::vector<Object*>* objs)
     for (auto& obj : *objs)
     {
         //calcular matriz modelo
-        auto model = obj->getModelMatrix();
+        System::setModelMatrix(obj->getModelMatrix());
         auto mat = obj->getMesh()->getMaterial();
         auto renderProgram = mat->getProgram();
 		
@@ -72,7 +73,7 @@ void GL4Render::drawObjects(std::vector<Object*>* objs)
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bo.vertexIdxArrayId);//activar lista de indices de v�rtices
         //describir buffers
         renderProgram->setVertexAttrib("vPos", sizeof(vertex_t), (void*)offsetof(vertex_t, vPosition), 4, GL_FLOAT);
-        renderProgram->setMatrix("mMat", model);
+        mat->prepare();
         //renderProgram->setVertexAttrib("vColor", sizeof(vertex_t), (void*)offsetof(vertex_t, vColor), 4, GL_FLOAT);
         //renderProgram->setVertexAttrib("vTexCoord", sizeof(vertex_t), (void*)offsetof(vertex_t, vTexCoord), 2, GL_FLOAT);
         ////si hay textura, activarla
