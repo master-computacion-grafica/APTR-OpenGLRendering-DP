@@ -19,4 +19,7 @@ public:
     
     void readVarList() override;
     unsigned int getVarLocation(std::string varName) override;
+    void setColorTextEnable() override;
+    void setColorTextDisable() override;
+    void bindColorTextureSample(int binding, Texture* texture) override;
 };

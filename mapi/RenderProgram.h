@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Program.h"
-#include "mapi/common.h"
+#include "Texture.h"
 
 
 class RenderProgram
@@ -43,6 +43,9 @@ public:
 	virtual void setVec3(std::string name, const glm::vec3& vec) = 0;
 	virtual void setVec4(std::string name, const glm::vec4& vec) = 0;
 	virtual void setMatrix(std::string name, const glm::mat4& matrix) = 0;
+	virtual void setColorTextEnable() = 0;
+	virtual void setColorTextDisable() = 0;
+	virtual void bindColorTextureSample(int binding, Texture* texture) = 0;
 
 	virtual void readVarList() = 0;
 	virtual unsigned int getVarLocation(std::string varName) = 0;

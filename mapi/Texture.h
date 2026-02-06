@@ -1,5 +1,4 @@
 #pragma once
-#define STB_IMAGE_IMPLEMENTATION
 #include "common.h"
 #include "stb_image.h"
 
@@ -11,7 +10,7 @@ protected:
     static inline glm::uint32_t textureCounter = 0;
     
     glm::uint32_t textureID;
-    //TODO: Esto esta bien?
+    
     glm::ivec2 textureSize;
     
     bool cubeMap = false;

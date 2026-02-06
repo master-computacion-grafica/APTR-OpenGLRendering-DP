@@ -1,6 +1,5 @@
 #pragma once
 
-#include "common.h"
 #include "Entity.h"
 
 static enum projectionType_e

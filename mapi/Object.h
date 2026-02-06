@@ -1,6 +1,5 @@
 #pragma once
 
-#include "common.h"
 #include "Mesh3D.h"
 #include "Entity.h"
 

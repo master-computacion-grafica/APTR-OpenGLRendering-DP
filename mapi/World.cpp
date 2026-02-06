@@ -81,7 +81,7 @@ void World::update(double deltaTime)
     {
         cam->step(deltaTime);
         cam->computeViewMatrix();
-        cam->computeProjectionMatrix();
+        cam->computeModelMatrix();
     }
 }
 

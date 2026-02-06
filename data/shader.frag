@@ -1,8 +1,17 @@
 #version 330
 
-out vec4 fragColor;
+uniform sampler2D colorText;
+uniform bool useColorText;
+in vec4 fColor;
+in vec2 fTextCoord;
+
 
 void main()
 {
-	fragColor=vec4(1.0f,1.0f,1.0f,1.0f);
+	vec4 tColor = vec4(0, 0, 0, 0);
+	
+	if(useColorText)
+		tColor = texture(colorText, fTextCoord);
+	
+	gl_FragColor = fColor + tColor;
 }

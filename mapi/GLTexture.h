@@ -4,13 +4,25 @@
 class GLTexture : public Texture
 {
 private:
-    GLuint glTextureID; 
+    GLuint glTextureID;
+
 protected:
     ~GLTexture() = default;
 
 public:
     void setupGLTexture();
     void update() override;
+    
+    GLuint getGlTextureID()
+    {
+        return glTextureID;
+    }
+
+    void setGlTextureID(GLuint glTextureID)
+    {
+        this->glTextureID = glTextureID;
+    }
+
 };
 
 
