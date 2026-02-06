@@ -10,6 +10,8 @@ protected:
 	// ATTRIBUTES //
 
 	RenderProgram* program;
+	
+	Texture* texture;
 
 
 public:
@@ -21,6 +23,9 @@ public:
 
 	void setProgram(RenderProgram* program) { this->program = program; }
 
+	Texture* getTexture() {	return texture;	}
+
+	void setTexture(Texture* texture) {	this->texture = texture; }
 
 	// METHODS && FUNCTIONS //
 

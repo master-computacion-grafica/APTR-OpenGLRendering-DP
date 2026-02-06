@@ -29,7 +29,7 @@ TrianguloRot::TrianguloRot()
 	setRotation({ 0,0,0,1 });
 	setScale({ 1,1,1,1 });
 	
-	this->setMesh(mesh);
+	this->setMeshes(std::vector<Mesh3D*>{ mesh });
 }
 
 

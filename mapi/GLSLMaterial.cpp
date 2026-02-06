@@ -44,6 +44,17 @@ void GLSLMaterial::prepare()
 
 	glm::mat4 MVP = cam->getProjection() * cam->getView() * System::getModelMatrix();
 	program->setMatrix("MVP", MVP);
+	program->setVertexAttrib("vPos", sizeof(vertex_t), (void*)offsetof(vertex_t, vPosition), 4, GL_FLOAT);
+	program->setVertexAttrib("vColor", sizeof(vertex_t), (void*)offsetof(vertex_t, vColor), 4, GL_FLOAT);
+	program->setVertexAttrib("vTexCoord", sizeof(vertex_t), (void*)offsetof(vertex_t, vTexCoords), 2, GL_FLOAT);
+	
+	if (!texture)
+		program->setColorTextDisable();
+	else
+	{
+		program->setColorTextEnable();
+		program->bindColorTextureSample(texture->getTextureID(), texture);
+	}
 	
 	program->readVarList();
 }

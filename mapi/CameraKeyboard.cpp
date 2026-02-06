@@ -24,11 +24,11 @@ void CameraKeyboard::step(double deltaTime)
         }
         if (inputManager->isPressed(GLFW_KEY_A))
         {
-            direction.x -= 1;
+            direction.x += 1;
         }
         if (inputManager->isPressed(GLFW_KEY_D))
         {
-            direction.x += 1;
+            direction.x -= 1;
         }
         if (inputManager->isPressed(GLFW_KEY_Q))
         {
