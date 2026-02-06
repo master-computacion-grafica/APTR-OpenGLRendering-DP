@@ -3,6 +3,7 @@
 #include "Render.h"
 #include "InputManager.h"
 #include "GLSLMaterial.h"
+#include "Texture.h"
 
 
 static enum GraphicsBackend
@@ -45,6 +46,7 @@ public:
 	static Render* getNewRender();
 	static InputManager* getNewInputManager();
 	static Material* getNewMaterial();
+	static Texture* getNewTexture();
 
 	static bool isClosed();
 };

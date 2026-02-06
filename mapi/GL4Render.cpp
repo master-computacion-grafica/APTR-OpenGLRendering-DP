@@ -36,19 +36,19 @@ void GL4Render::setupObject(Object* obj)
     //copiar datos a GPU
     glBindVertexArray(bo.arrayBufferId); //activar lista de arrays
     glBindBuffer(GL_ARRAY_BUFFER, bo.vertexArrayId);//activar lista de v�rtices
-    int numElements = obj->getMesh()->vVertList.size();
+    int numElements = obj->getMeshes()->vVertList.size();
     glBufferData(GL_ARRAY_BUFFER, numElements *sizeof(vertex_t), obj->getMesh()->vVertList.data(), GL_STATIC_DRAW); //copiar vertices
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bo.vertexIdxArrayId);//activar lista de indices de v�rtices
-    numElements = obj->getMesh()->getTriangleIndexList()->size();
+    numElements = obj->getMeshes()->getTriangleIndexList()->size();
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, numElements * sizeof(unsigned int), obj->getMesh()->getTriangleIndexList()->data(), GL_STATIC_DRAW); //copiar indices de vertices
     //guardar ids de buffers
-    bufferObjectList[obj->getMesh()->getMeshID()] = bo;
+    bufferObjectList[obj->getMeshes()->getMeshID()] = bo;
 }
 
 void GL4Render::removeObject(Object* obj)
 {
-    bufferObjectList.erase(obj->getMesh()->getMeshID());
+    bufferObjectList.erase(obj->getMeshes()->getMeshID());
 }
 
 void GL4Render::drawObjects(std::vector<Object*>* objs)
@@ -58,7 +58,7 @@ void GL4Render::drawObjects(std::vector<Object*>* objs)
     {
         //calcular matriz modelo
         auto model = obj->getModelMatrix();
-        auto mat = obj->getMesh()->getMaterial();
+        auto mat = obj->getMeshes()->getMaterial();
         auto renderProgram = mat->getProgram();
 		
         renderProgram->use();
@@ -66,7 +66,7 @@ void GL4Render::drawObjects(std::vector<Object*>* objs)
         //mat->renderProgram->setMVP(cam.cameraProjection* cam.cameraView * model);
 
         //activar buffers de datos
-        auto bo = bufferObjectList[obj->getMesh()->getMeshID()]; //recuperar ids de buffers de este objeto
+        auto bo = bufferObjectList[obj->getMeshes()->getMeshID()]; //recuperar ids de buffers de este objeto
         glBindVertexArray(bo.arrayBufferId); //activar lista de arrays
         glBindBuffer(GL_ARRAY_BUFFER, bo.vertexArrayId);//activar lista de v�rtices
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bo.vertexIdxArrayId);//activar lista de indices de v�rtices
@@ -80,7 +80,7 @@ void GL4Render::drawObjects(std::vector<Object*>* objs)
         //    renderProgram->setTextureData(0, mat->texture->GlTextID, GL_TEXTURE_2D);
 
         //ordenar a dibujar
-        glDrawElements(GL_TRIANGLES, obj->getMesh()->getTriangleIndexList()->size(), GL_UNSIGNED_INT, nullptr);
+        glDrawElements(GL_TRIANGLES, obj->getMeshes()->getTriangleIndexList()->size(), GL_UNSIGNED_INT, nullptr);
     }
     glfwSwapBuffers(window);
 }

@@ -1,6 +1,7 @@
 #include "FactoryEngine.h"
 #include "GL4Render.h"
 #include "GLFWInputManager.h"
+#include "GLTexture.h"
 
 
 GraphicsBackend FactoryEngine::getSelectedGraphicsBackend()
@@ -81,6 +82,23 @@ Material* FactoryEngine::getNewMaterial()
 	default:
 		std::cout << "ERROR: Graphics backend type not recognised!" << std::endl;
 		break;
+	}
+}
+
+Texture* FactoryEngine::getNewTexture()
+{
+	switch (selectedGraphicsBackend)
+	{
+		case GraphicsBackend::GL4:
+			return new GLTexture();
+			break;
+		
+		case GraphicsBackend::GL1:
+			return new GLTexture();
+			break;
+
+		default:
+			std::cout << "ERROR: Graphics backend type not recognised!!" << std::endl;
 	}
 }
 
