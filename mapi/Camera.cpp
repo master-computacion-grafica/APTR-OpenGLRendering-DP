@@ -4,6 +4,8 @@ Camera::Camera(projectionType_e type, glm::vec3 position, glm::vec3 lookAt, glm:
 {
     this->type = type;
     this->position = glm::vec4(position, 1.0);
+    this->rotation = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+    this->scale = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
     this->lookAt = lookAt;
     this->up = up;
 
@@ -11,6 +13,8 @@ Camera::Camera(projectionType_e type, glm::vec3 position, glm::vec3 lookAt, glm:
     this->aspectRatio = 4.0f / 3.0f;
     this->near = 0.01f;
     this->far = 1000.0f;
+
+    computeProjectionMatrix();
 }
 
 void Camera::computeProjectionMatrix()

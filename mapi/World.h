@@ -55,5 +55,7 @@ public:
 
 	Camera* getCamera(size_t index);
 
+	int getCameraIndex(Camera* cam);
+
 };
 

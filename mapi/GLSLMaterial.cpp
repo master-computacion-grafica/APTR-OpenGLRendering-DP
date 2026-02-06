@@ -1,5 +1,7 @@
 #include "GLSLMaterial.h"
 #include "System.h"
+#include "GLSLProgram.h"
+//#include "GLSLShader.h"
 
 
 GLSLMaterial::GLSLMaterial()

@@ -107,3 +107,18 @@ Camera* World::getCamera(size_t index)
 
     return *iterator;
 }
+
+int World::getCameraIndex(Camera* cam)
+{
+    int index = 0;
+
+    while (index < cameras.size() && getCamera(index) != cam)
+    {
+        index++;
+    }
+
+    if (index >= cameras.size() || cameras.empty())
+        return -1;
+    
+    return index;
+}

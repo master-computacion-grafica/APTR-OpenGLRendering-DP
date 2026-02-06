@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Material.h"
-#include "GLSLProgram.h"
-#include "GLSLShader.h"
 
 
 class GLSLMaterial: public Material
