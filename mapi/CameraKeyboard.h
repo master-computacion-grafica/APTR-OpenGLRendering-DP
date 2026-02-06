@@ -10,7 +10,7 @@ private:
     // ATTRIBUTES //
 
     float speed;
-    glm::vec3 direction;
+    glm::vec4 direction;
 
 
 public:
@@ -23,12 +23,12 @@ public:
     // GETTERS && SETTERS //
 
     float getSpeed() { return this->speed; }
-    glm::vec3 getDirection() { return this->direction; }
+    glm::vec4 getDirection() { return this->direction; }
     
     void setSpeed(float newSpeed) { this->speed = newSpeed; }
     
     
     // METHODS && FUNCTIONS //
-
-    void step(float deltaTime) override;
+    
+    void step(double timeStep) override;
 };

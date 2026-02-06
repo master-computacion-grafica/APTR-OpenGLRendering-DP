@@ -25,6 +25,7 @@
 #include "FactoryEngine.h"
 #include "System.h"
 #include "TrianguloRot.h"
+#include "CameraKeyboard.h"
 
 
 int main(int argc, char** argv)
@@ -35,6 +36,9 @@ int main(int argc, char** argv)
 
 	// Inicializar la clase System
 	System::initSystem();
+
+	CameraKeyboard* cam = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 0.5f);
+	System::getWorld()->addCamera(cam);
 
 	//Crear objeto TrianguloRot
 	TrianguloRot* triangle = new TrianguloRot();

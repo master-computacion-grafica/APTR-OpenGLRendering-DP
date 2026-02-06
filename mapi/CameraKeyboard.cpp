@@ -6,37 +6,43 @@ CameraKeyboard::CameraKeyboard(projectionType_e type, glm::vec3 position, glm::v
     this->speed = speed;
 }
 
-void CameraKeyboard::step(float deltaTime)
+void CameraKeyboard::step(double deltaTime)
 {
-    direction = glm::vec3(0, 0, 0);
-    
     InputManager* inputManager = System::getInputManager();
-    if (inputManager->isPressed('D'))
-    {
-        direction.x += 1.0f;
-    }
-    if (inputManager->isPressed('A'))
-    {
-        direction.x += -1.0f;
-    }
-    if (inputManager->isPressed('W'))
-    {
-        direction.z += 1.0f;
-    }
-    if (inputManager->isPressed('S'))
-    {
-        direction.z += -1.0f;
-    }
-    if (inputManager->isPressed('Q'))
-    {
-        direction.y += 1.0f;
-    }
-    if (inputManager->isPressed('E'))
-    {
-        direction.y += -1.0f;
-    }
 
-    direction = glm::normalize(direction);
+    if (inputManager->mouseState.buttonState[GLFW_MOUSE_BUTTON_RIGHT])
+    {
+        direction = glm::vec4(0, 0, 0, 0);
 
-    position += direction * speed * deltaTime;
+        if (inputManager->isPressed(GLFW_KEY_W))
+        {
+            direction.z += 1;
+        }
+        if (inputManager->isPressed(GLFW_KEY_S))
+        {
+            direction.z -= 1;
+        }
+        if (inputManager->isPressed(GLFW_KEY_A))
+        {
+            direction.x -= 1;
+        }
+        if (inputManager->isPressed(GLFW_KEY_D))
+        {
+            direction.x += 1;
+        }
+        if (inputManager->isPressed(GLFW_KEY_Q))
+        {
+            direction.y -= 1;
+        }
+        if (inputManager->isPressed(GLFW_KEY_E))
+        {
+            direction.y += 1;
+        }
+
+        direction = glm::normalize(direction);
+        direction = direction * (speed * static_cast<float>(deltaTime));
+
+        position += direction;
+        lookAt += glm::vec3(direction);
+    }
 }

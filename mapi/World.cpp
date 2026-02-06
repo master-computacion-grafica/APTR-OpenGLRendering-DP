@@ -10,9 +10,40 @@ std::list<Object*>& World::getObjects()
     return this->objects;
 }
 
+std::list<Camera*>& World::getCameras()
+{
+    return this->cameras;
+}
+
+int World::getActiveCamera()
+{
+    return this->activeCamera;
+}
+
 void World::setObjects(std::list<Object*> objects)
 {
     this->objects = objects;
+}
+
+void World::setCameras(std::list<Camera*> cameras)
+{
+    this->cameras = cameras;
+}
+
+void World::setActiveCamera(int activeCamera)
+{
+    if (activeCamera < 0)
+    {
+    this->activeCamera = 0;
+    }
+    else if (activeCamera >= this->cameras.size())
+    {
+        this->activeCamera = this->cameras.size() - 1;
+    }
+    else
+    {
+        this->activeCamera = activeCamera;
+    }
 }
 
 void World::addObject(Object* obj)
@@ -23,21 +54,6 @@ void World::addObject(Object* obj)
 void World::removeObject(Object* obj)
 {
     objects.remove(obj);
-    /*auto iterator = objects.begin();
-
-    while (*iterator != obj && iterator != objects.end()) 
-    {
-        std::advance(iterator, 1);
-    }
-
-    if (iterator != objects.end())
-    {
-        objects.erase(iterator);
-    } 
-    else
-    {
-        std::cerr << "ERROR: Object not found!" << std::endl;
-    }*/
 }
 
 size_t World::getNumObjects()
@@ -48,7 +64,6 @@ size_t World::getNumObjects()
 Object* World::getObject(size_t index)
 {
     auto iterator = objects.begin();
-
     std::advance(iterator, index);
 
     return *iterator;
@@ -61,4 +76,34 @@ void World::update(float deltaTime)
         obj->step(deltaTime);
         obj->computeModelMatrix();
     }
+
+    for (Camera* cam : cameras)
+    {
+        cam->step(deltaTime);
+        cam->computeViewMatrix();
+        cam->computeModelMatrix();
+    }
+}
+
+void World::addCamera(Camera* cam)
+{
+    cameras.push_back(cam);
+}
+
+void World::removeCamera(Camera* cam)
+{
+    cameras.remove(cam);
+}
+
+size_t World::getNumCameras()
+{
+    return cameras.size();
+}
+
+Camera* World::getCamera(size_t index)
+{
+    auto iterator = cameras.begin();
+    std::advance(iterator, index);
+
+    return *iterator;
 }

@@ -31,14 +31,8 @@ public:
 
     // CONSTRUCTOR //
 
-    Camera(projectionType_e type, glm::vec3 position, glm::vec3 lookAt, glm::vec3 up)
-    {
-        this->type = type;
-        this->position = glm::vec4(position, 1.0f);
-        this->lookAt = lookAt;
-        this->up = up;
-    }
-
+    Camera(projectionType_e type, glm::vec3 position, glm::vec3 lookAt, glm::vec3 up);
+    
     
     // GETTERS && SETTERS //
 
@@ -68,9 +62,6 @@ public:
     void computeProjectionMatrix();
 
     void computeViewMatrix();
-    
-    virtual void step(float timeStep) = 0;
-    void step(double deltaTime) override;
 };
 
 //     glm::vec4  pos;

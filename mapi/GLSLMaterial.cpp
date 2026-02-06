@@ -1,4 +1,5 @@
 #include "GLSLMaterial.h"
+#include "System.h"
 
 
 GLSLMaterial::GLSLMaterial()
@@ -36,5 +37,11 @@ void GLSLMaterial::loadProgram(std::list<std::string> programNames)
 
 void GLSLMaterial::prepare()
 {
+	World* world = System::getWorld();
+	Camera* cam = world->getCamera(world->getActiveCamera());
+
+	glm::mat4 MVP = cam->getModelMatrix() * cam->getView() * cam->getProjection();
+	program->setMatrix("MVP", MVP);
+	
 	program->readVarList();
 }
