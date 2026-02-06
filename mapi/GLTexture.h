@@ -9,6 +9,7 @@ protected:
     ~GLTexture() = default;
 
 public:
+    void setupGLTexture();
     void update() override;
 };
 

@@ -1,6 +1,6 @@
 #include "GLTexture.h"
 
-void GLTexture::update()
+void GLTexture::setupGLTexture()
 {
     if (!textureBytes.empty())
     {
@@ -38,18 +38,21 @@ void GLTexture::update()
             
             //Cargar en GPU datos de textura
             //TODO: Esto esta bien?
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureSize[0], textureSize[1], 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureSize.x, textureSize.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureBytes.data());
             //Generar mipmaps
             glGenerateMipmap(GL_TEXTURE_2D);
         }
-        
-        //Liberar datos de CPU
-        stbi_image_free(textureBytes.data());
     }
     else
     {
         std::cout << "Error loading texture" << std::endl;
     }
+}
+
+void GLTexture::update()
+{
+    glBindTexture(GL_TEXTURE_2D, glTextureID); //Las siguientes instrucciones afectan a la textura bindeada
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureSize.x, textureSize.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureBytes.data());
 }
 
 // #define STB_IMAGE_IMPLEMENTATION

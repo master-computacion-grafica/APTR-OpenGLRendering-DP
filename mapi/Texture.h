@@ -12,7 +12,7 @@ protected:
     
     glm::uint32_t textureID;
     //TODO: Esto esta bien?
-    glm::ivec2<2, int> textureSize;
+    glm::ivec2 textureSize;
     
     bool cubeMap = false;
     
@@ -42,7 +42,10 @@ public:
     {
         this->fileName = fileName;
         int components = 0;
-        textureBytes = stbi_load(fileName.c_str(), &textureSize[0], &textureSize[1], &components, 4);
+        unsigned char* data = stbi_load(fileName.c_str(), &textureSize.x, &textureSize.y, &components, 4);
+        textureBytes.resize(textureSize.x * textureSize.y * 4);
+        memcpy(textureBytes.data(), data, textureSize.x * textureSize.y * 4);
+        stbi_image_free(data);
     }
     
     virtual void update() = 0;
@@ -59,7 +62,7 @@ public:
         this->textureID = textureID;
     }
 
-    glm::ivec2<2, int> getTextureSize()
+    glm::ivec2 getTextureSize()
     {
         return textureSize;
     }
@@ -76,7 +79,7 @@ public:
 
     void setCubeMap(bool cubeMap)
     {
-        this->cubeMap = cube_map;
+        this->cubeMap = cubeMap;
     }
 
     bool isBilinear()
