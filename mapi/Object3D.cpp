@@ -19,6 +19,7 @@ void Object3D::loadDataFromFile(std::string file)
 			// Iteramos por todos los buffers
 			auto materialNode = bufferNode.child("material");
 			auto material = FactoryEngine::getNewMaterial();
+			material->setTexture(FactoryEngine::getNewTexture());
             
 			auto textureNode = materialNode.child("texture");
 			if (textureNode)
@@ -112,3 +113,8 @@ void Object3D::loadObj(std::string objFile, Material* material)
         }
         if (m) meshes.push_back(m);
 }
+
+void Object3D::step(double deltaTime)
+{
+}
+

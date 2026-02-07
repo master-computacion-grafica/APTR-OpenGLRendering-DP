@@ -44,11 +44,17 @@ int main(int argc, char** argv)
 	world->addCamera(cam);
 	world->setActiveCamera(world->getCameraIndex(cam));
 
-	//Crear objeto TrianguloRot
-	//TrianguloRot* triangle = new TrianguloRot();
-	auto cube = new CubeTex();
+	//Crear objeto ciudad
+	Object3D* town = new Object3D();
 
-	System::addObject(cube);
+	// Cargar mallas desde archivo
+	town->loadDataFromFile("./data/asian_town.msh");
+	
+	town->setPosition(glm::vec4(0,0,0,0));
+	town->setRotation(glm::vec4(0,0,0,0));
+	town->setScale(glm::vec4(1,1,1,1));
+
+	System::addObject(town);
 	
 	System::mainLoop();
 }
