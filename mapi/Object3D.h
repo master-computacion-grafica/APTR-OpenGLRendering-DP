@@ -12,7 +12,7 @@ public:
 	void loadDataFromFile(std::string file) override;
 	void loadObj(std::string objFile, Material* material);
 
-	virtual void step(double deltaTime) = 0;
+	virtual void step(double deltaTime);
 
 
 	// DESTRUCTOR //
