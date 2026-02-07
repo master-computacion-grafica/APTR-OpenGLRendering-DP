@@ -1,8 +1,7 @@
 #pragma once
 
-#include "mapi/common.h"
 #include "Object3D.h"
-#include "System.h"
+
 
 class TrianguloRot : public Object3D
 {

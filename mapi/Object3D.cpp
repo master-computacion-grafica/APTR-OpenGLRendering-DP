@@ -3,5 +3,4 @@
 void Object3D::loadDataFromFile(std::string file)
 {
 	
-
 }

@@ -37,7 +37,6 @@ void GLTexture::setupGLTexture()
             }
             
             //Cargar en GPU datos de textura
-            //TODO: Esto esta bien?
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureSize.x, textureSize.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureBytes.data());
             //Generar mipmaps
             glGenerateMipmap(GL_TEXTURE_2D);

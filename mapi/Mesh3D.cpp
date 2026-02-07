@@ -4,6 +4,9 @@ Mesh3D::Mesh3D()
 {
     meshID = meshCounter++;
     
+    vVertList = std::vector<vertex_t>();
+    vTriangleIdxList = new std::vector<glm::uint32>();
+    
     colorRGBA = {1,1,1,1};
 }
 

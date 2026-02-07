@@ -27,6 +27,7 @@
 #include "System.h"
 #include "TrianguloRot.h"
 #include "CameraKeyboard.h"
+#include "CubeTex.h"
 
 
 int main(int argc, char** argv)
@@ -38,15 +39,16 @@ int main(int argc, char** argv)
 	// Inicializar la clase System
 	System::initSystem();
 
-	CameraKeyboard* cam = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
+	CameraKeyboard* cam = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(1.0f, 1.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
 	World* world = System::getWorld();
 	world->addCamera(cam);
 	world->setActiveCamera(world->getCameraIndex(cam));
 
 	//Crear objeto TrianguloRot
-	TrianguloRot* triangle = new TrianguloRot();
+	//TrianguloRot* triangle = new TrianguloRot();
+	auto cube = new CubeTex();
 
-	System::addObject(triangle);
+	System::addObject(cube);
 	
 	System::mainLoop();
 }
