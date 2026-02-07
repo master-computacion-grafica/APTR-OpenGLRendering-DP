@@ -11,6 +11,7 @@ void GLFWInputManager::init()
     glfwSetKeyCallback(window, windowKeyboardEvent);//init de funcion de teclado
     glfwSetMouseButtonCallback(window, mouseButtonEvent);//init de funcion boton raton
     glfwSetCursorPosCallback(window, mousePosEvent);//init posicion de raton
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     setInputManagerCursorPos(0, 0);
 }
 
