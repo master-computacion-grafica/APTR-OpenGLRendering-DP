@@ -283,6 +283,9 @@
     <None Include="data\shader.vert" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\PR4\asian_town.msh" />
+    <Content Include="data\PR4\asian_town.obj" />
+    <Content Include="data\PR4\asian_town.png" />
     <Content Include="data\textures\front.png" />
     <Content Include="data\textures\top.png" />
   </ItemGroup>

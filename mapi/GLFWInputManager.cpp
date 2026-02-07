@@ -60,7 +60,22 @@ void GLFWInputManager::setInputManagerCursorPos(double x, double y)
     glfwSetCursorPos(window, x, y);
 }
 
-bool GLFWInputManager::isPressed(char key)
+bool GLFWInputManager::isMousePressed(int mouseButton)
+{
+    return mouseState.buttonState[mouseButton];
+}
+
+double GLFWInputManager::getCursorPosX()
+{
+    return mouseState.xPos;
+}
+
+double GLFWInputManager::getCursorPosY()
+{
+    return mouseState.yPos;
+}
+
+bool GLFWInputManager::isPressed(int key)
 {
     return keyState[key];
 }

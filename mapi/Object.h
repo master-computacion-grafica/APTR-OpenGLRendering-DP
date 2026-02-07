@@ -10,7 +10,7 @@ enum Tipo
 
 class Object : public Entity
 {
-private:
+protected:
 
 	// ATTRIBUTES //
 

@@ -10,6 +10,7 @@ public:
 	// METHODS && FUCNCTIONS //
 
 	void loadDataFromFile(std::string file) override;
+	void loadObj(std::string objFile, Material* material);
 
 	virtual void step(double deltaTime) = 0;
 

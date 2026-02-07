@@ -5,7 +5,7 @@ typedef struct  {
     double xPos;
     double yPos;
     std::map<int, bool> buttonState;
-}mouseStats_t;
+}mouseState_t;
 
 class InputManager
 {
@@ -14,15 +14,21 @@ public:
     // ATRIBUTES //
     
     static inline std::map<int, bool> keyState;
-    static inline mouseStats_t mouseState;
+    static inline mouseState_t mouseState;
     
     // METHODS //
     
     virtual void init() = 0;
     
-    virtual bool isPressed(char key) = 0;
+    virtual bool isPressed(int key) = 0;
+    
+    virtual bool isMousePressed(int mouseButton) = 0;
     
     virtual void setInputManagerCursorPos(double x, double y) = 0;
+    
+    virtual double getCursorPosX() = 0;
+    
+    virtual double getCursorPosY() = 0;
     
     virtual void updateEvents() = 0;
     

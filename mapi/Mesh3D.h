@@ -34,7 +34,7 @@ public:
     // del meshCount.
     // void setMeshID(int id);
     
-    std::vector<vertex_t> getVertexList();
+    std::vector<vertex_t>& getVertexList();
     
     void setVertexList(std::vector<vertex_t> vertexList);
     
