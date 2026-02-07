@@ -4,6 +4,9 @@
 CameraKeyboard::CameraKeyboard(projectionType_e type, glm::vec3 position, glm::vec3 lookAt, glm::vec3 up, float speed) : Camera(type, position, lookAt, up)
 {
     this->speed = speed;
+
+    this->direction = glm::vec4(this->lookAt, 0.0f) - this->position;
+    this->rotSpeed = 45.0f;
 }
 
 void CameraKeyboard::step(double deltaTime)
