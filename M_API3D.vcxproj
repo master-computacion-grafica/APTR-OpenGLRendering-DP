@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="mapi\CameraKeyboard.cpp" />
+    <ClCompile Include="mapi\CubeTex.cpp" />
     <ClCompile Include="mapi\GLSLMaterial.cpp" />
     <ClCompile Include="mapi\GLSLProgram.cpp" />
     <ClCompile Include="mapi\GLSLShader.cpp" />
@@ -250,6 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mapi\CameraKeyboard.h" />
+    <ClInclude Include="mapi\CubeTex.h" />
     <ClInclude Include="mapi\GLSLMaterial.h" />
     <ClInclude Include="mapi\GLSLProgram.h" />
     <ClInclude Include="mapi\GLSLShader.h" />
