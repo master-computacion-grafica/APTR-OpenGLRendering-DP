@@ -3,6 +3,13 @@
 #include "FactoryEngine.h"
 #include "pugixml.hpp"
 
+Object3D::Object3D(glm::vec4 position, glm::vec4 rotation, glm::vec4 scale)
+{
+	this->position = position;
+	this->rotation = rotation;
+	this->scale = scale;
+}
+
 void Object3D::loadDataFromFile(std::string file)
 {
 	pugi::xml_document doc;
