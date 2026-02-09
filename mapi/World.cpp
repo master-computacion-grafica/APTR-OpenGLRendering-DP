@@ -76,13 +76,18 @@ void World::update(double deltaTime)
         obj->step(deltaTime);
         obj->computeModelMatrix();
     }
-
-    for (Camera* cam : cameras)
+    
+    if (System::getInputManager()->wasPressedThisFrame(GLFW_KEY_C))
     {
-        cam->step(deltaTime);
-        cam->computeViewMatrix();
-        cam->computeModelMatrix();
+        int index = getActiveCamera();
+        if (++index >= this->cameras.size())
+            index = 0;
+        this->setActiveCamera(index);
     }
+        
+    getCamera(activeCamera)->step(deltaTime);
+    getCamera(activeCamera)->computeViewMatrix();
+    getCamera(activeCamera)->computeModelMatrix();
 }
 
 void World::addCamera(Camera* cam)

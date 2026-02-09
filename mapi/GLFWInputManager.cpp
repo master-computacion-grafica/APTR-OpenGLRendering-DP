@@ -21,10 +21,12 @@ void GLFWInputManager::windowKeyboardEvent(GLFWwindow* window, int key, int scan
     case GLFW_PRESS:
         {
             keyState[key] = true;
+            keyWasPressedState[key] = true;
         }break;
     case GLFW_RELEASE:
         {
             keyState[key] = false;
+            keyWasPressedState[key] = false;
         }break;
     }
 }
@@ -64,6 +66,15 @@ void GLFWInputManager::setInputManagerCursorPos(double x, double y)
 bool GLFWInputManager::isMousePressed(int mouseButton)
 {
     return mouseState.buttonState[mouseButton];
+}
+
+bool GLFWInputManager::wasPressedThisFrame(int key)
+{
+    if (!keyWasPressedState[key])
+        return false;
+    bool wasPressedThisFrame = keyState[key];
+    keyWasPressedState[key] = false;
+    return wasPressedThisFrame;
 }
 
 double GLFWInputManager::getCursorPosX()

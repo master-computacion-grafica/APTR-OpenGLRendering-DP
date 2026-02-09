@@ -18,6 +18,7 @@ public:
     void setInputManagerCursorPos(double x, double y) override;
     bool isPressed(int key) override;
     bool isMousePressed(int mouseButton) override;
+    bool wasPressedThisFrame(int key) override;
     double getCursorPosX() override;
     double getCursorPosY() override;
 };

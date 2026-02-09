@@ -47,11 +47,11 @@ void CameraKeyboard::step(double deltaTime)
         }
         if (inputManager->isPressed(GLFW_KEY_Q))
         {
-            altInput++;
+            altInput--;
         }
         if (inputManager->isPressed(GLFW_KEY_E))
         {
-            altInput--;
+            altInput++;
         }
         
         yaw += mouseDelta.x * 0.1f;

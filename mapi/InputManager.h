@@ -14,6 +14,7 @@ public:
     // ATRIBUTES //
     
     static inline std::map<int, bool> keyState;
+    static inline std::map<int, bool> keyWasPressedState;
     static inline mouseState_t mouseState;
     
     // METHODS //
@@ -21,6 +22,8 @@ public:
     virtual void init() = 0;
     
     virtual bool isPressed(int key) = 0;
+    
+    virtual bool wasPressedThisFrame(int key) = 0;
     
     virtual bool isMousePressed(int mouseButton) = 0;
     

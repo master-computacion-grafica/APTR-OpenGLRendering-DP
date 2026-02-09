@@ -1,6 +1,7 @@
 #include "Object3D.h"
 
 #include "FactoryEngine.h"
+#include "GLTexture.h"
 #include "pugixml.hpp"
 
 Object3D::Object3D(glm::vec4 position, glm::vec4 rotation, glm::vec4 scale)
@@ -8,6 +9,8 @@ Object3D::Object3D(glm::vec4 position, glm::vec4 rotation, glm::vec4 scale)
 	this->position = position;
 	this->rotation = rotation;
 	this->scale = scale;
+	
+	computeModelMatrix();
 }
 
 void Object3D::loadDataFromFile(std::string file)
@@ -26,7 +29,6 @@ void Object3D::loadDataFromFile(std::string file)
 			// Iteramos por todos los buffers
 			auto materialNode = bufferNode.child("material");
 			auto material = FactoryEngine::getNewMaterial();
-			material->setTexture(FactoryEngine::getNewTexture());
             
 			auto textureNode = materialNode.child("texture");
 			if (textureNode)
@@ -34,7 +36,11 @@ void Object3D::loadDataFromFile(std::string file)
 				//layers
 				//a�adir nueva textura
 				
-				material->getTexture()->load(textureNode.child("layer").text().as_string());
+				auto texture = FactoryEngine::getNewTexture();
+				texture->load(textureNode.child("layer").text().as_string());
+				dynamic_cast<GLTexture*>(texture)->setupGLTexture();
+				material->setTexture(texture);
+				
 			}
 			auto shaderNode = materialNode.child("shader");
 			if (shaderNode)

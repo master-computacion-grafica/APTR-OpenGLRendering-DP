@@ -17,20 +17,21 @@ int main(int argc, char** argv)
 	// Inicializar la clase System
 	System::initSystem();
 
-	CameraKeyboard* cam = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(0.0f, 1.0f, -10.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
+	CameraFPS* camFPS = new CameraFPS(projectionType_e::FPS, glm::vec3(0.0f, 0.01f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 0.1f);
+	CameraKeyboard* camKeyboard = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(0.0f, 0.1f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 0.1f);
 	World* world = System::getWorld();
-	world->addCamera(cam);
-	world->setActiveCamera(world->getCameraIndex(cam));
+	world->addCamera(camFPS);
+	world->addCamera(camKeyboard);
+	world->setActiveCamera(world->getCameraIndex(camKeyboard));
 
 	//Crear objeto ciudad
-	Object3D* town = new Object3D();
+	Object3D* town = new Object3D(
+		glm::vec4(0,0,0,1), 
+		glm::vec4(0,0,0,1), 
+		glm::vec4(1,1,1,1));
 
 	// Cargar mallas desde archivo
-	town->loadDataFromFile("./data/lightBox/texturedCube.msh");
-	
-	town->setPosition(glm::vec4(0,0,0,1));
-	town->setRotation(glm::vec4(0,0,0,1));
-	town->setScale(glm::vec4(1,1,1,1));
+	town->loadDataFromFile("./data/asian_town.msh");
 
 	System::addObject(town);
 	
