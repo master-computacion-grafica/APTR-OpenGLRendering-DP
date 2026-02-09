@@ -68,6 +68,4 @@ void CameraFPS::step(double deltaTime)
         this->position += glm::vec4(glm::normalize(movementDirection) * (speed * static_cast<float>(deltaTime)), 0);
     }
     setLookAt(glm::vec3(position + direction));
-    
-    computeViewMatrix();
 }

@@ -8,7 +8,7 @@ in vec2 fTexCoord;
 
 void main()
 {
-	vec4 tColor = vec4(1, 1, 1, 0);
+	vec4 tColor = vec4(0, 0, 0, 0);
 	
 	if(useColorText)
 		tColor = texture(colorText, fTexCoord);

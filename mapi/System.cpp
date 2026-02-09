@@ -84,8 +84,8 @@ void System::mainLoop()
 		render->setupObject(obj);
 	}
 
-	// while (!end)
-	// {
+	while (!end)
+	{
 		newTime = glfwGetTime();
 		deltaTime = newTime - lastTime;
 		lastTime = newTime;
@@ -98,5 +98,5 @@ void System::mainLoop()
 		inputManager->updateEvents();
 
 		obj_vector = {};
-	//}
+	}
 }

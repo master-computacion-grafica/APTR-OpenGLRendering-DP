@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 	// Inicializar la clase System
 	System::initSystem();
 
-	CameraKeyboard* cam = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(1.0f, 1.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
+	CameraKeyboard* cam = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(0.0f, 1.0f, -10.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
 	World* world = System::getWorld();
 	world->addCamera(cam);
 	world->setActiveCamera(world->getCameraIndex(cam));
@@ -26,18 +26,16 @@ int main(int argc, char** argv)
 	Object3D* town = new Object3D();
 
 	// Cargar mallas desde archivo
-	town->loadDataFromFile("./data/asian_town.msh");
+	town->loadDataFromFile("./data/lightBox/texturedCube.msh");
 	
-	town->setPosition(glm::vec4(0,0,0,0));
-	town->setRotation(glm::vec4(0,0,0,0));
+	town->setPosition(glm::vec4(0,0,0,1));
+	town->setRotation(glm::vec4(0,0,0,1));
 	town->setScale(glm::vec4(1,1,1,1));
 
 	System::addObject(town);
-
-	while (!System::getEnd())
-	{
-		System::mainLoop();
-	}
+	
+	System::mainLoop();
+	
 }
 
 //if (glfwInit() != GLFW_TRUE)
