@@ -150,5 +150,5 @@ CubeTex::CubeTex()
 
 void CubeTex::step(double deltaTime)
 {
-	rotation.y += angularVelocity * deltaTime;
+	//rotation.y += angularVelocity * deltaTime;
 }

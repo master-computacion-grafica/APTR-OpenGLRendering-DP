@@ -1,15 +1,10 @@
 #pragma once
-
 #include "Camera.h"
 
-class CameraKeyboard : public Camera
+class CameraFPS : public Camera
 {
-
 public:
-
-    // CONSTRUCTOR//
-
-    CameraKeyboard(projectionType_e type, glm::vec3 position, glm::vec3 lookAt, glm::vec3 up, float speed);
+    CameraFPS(projectionType_e type, glm::vec3 position, glm::vec3 lookAt, glm::vec3 up, float speed);
 
 
     // GETTERS && SETTERS //
@@ -23,4 +18,5 @@ public:
     // METHODS && FUNCTIONS //
     
     void step(double timeStep) override;
+    
 };

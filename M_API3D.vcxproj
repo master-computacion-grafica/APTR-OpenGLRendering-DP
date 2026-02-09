@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="mapi\CameraFPS.cpp" />
     <ClCompile Include="mapi\CameraKeyboard.cpp" />
     <ClCompile Include="mapi\CubeTex.cpp" />
     <ClCompile Include="mapi\GLSLMaterial.cpp" />
@@ -250,6 +251,7 @@
     <ClCompile Include="mapi\TrianguloRot.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mapi\CameraFPS.h" />
     <ClInclude Include="mapi\CameraKeyboard.h" />
     <ClInclude Include="mapi\CubeTex.h" />
     <ClInclude Include="mapi\GLSLMaterial.h" />

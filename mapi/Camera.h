@@ -24,6 +24,14 @@ protected:
     float near;
     float far;
     float aspectRatio;
+    
+    float yaw;
+    float pitch;
+    glm::vec2 mouseLastPosition;
+    
+    float speed;
+    float rotSpeed;
+    glm::vec4 direction;
 
     
 public:

@@ -23,6 +23,7 @@
 
 #define GLAD_BIN
 #define STB_IMAGE_IMPLEMENTATION
+#include "CameraFPS.h"
 #include "FactoryEngine.h"
 #include "System.h"
 #include "TrianguloRot.h"
@@ -39,22 +40,23 @@ int main(int argc, char** argv)
 	// Inicializar la clase System
 	System::initSystem();
 
-	CameraKeyboard* cam = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(1.0f, 1.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
+	CameraFPS* cam = new CameraFPS(projectionType_e::KEYBOARD, glm::vec3(1.0f, 1.0f, 3.0f), glm::vec3(-1.0f, -1.0f, -3.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
 	World* world = System::getWorld();
 	world->addCamera(cam);
 	world->setActiveCamera(world->getCameraIndex(cam));
 
 	//Crear objeto ciudad
-	Object3D* town = new Object3D();
+	//Object3D* town = new Object3D();
+	CubeTex* cube = new CubeTex();
 
 	// Cargar mallas desde archivo
-	town->loadDataFromFile("./data/asian_town.msh");
+	//town->loadDataFromFile("./data/asian_town.msh");
 	
-	town->setPosition(glm::vec4(0,0,0,0));
-	town->setRotation(glm::vec4(0,0,0,0));
-	town->setScale(glm::vec4(1,1,1,1));
+	//town->setPosition(glm::vec4(0,0,0,0));
+	//town->setRotation(glm::vec4(0,0,0,0));
+	//town->setScale(glm::vec4(1,1,1,1));
 
-	System::addObject(town);
+	System::addObject(cube);
 	
 	System::mainLoop();
 }

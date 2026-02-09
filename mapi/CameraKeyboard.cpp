@@ -5,8 +5,13 @@ CameraKeyboard::CameraKeyboard(projectionType_e type, glm::vec3 position, glm::v
 {
     this->speed = speed;
 
-    this->direction = glm::vec4(this->lookAt, 0.0f) - this->position;
-    this->rotSpeed = 45.0f;
+    rotSpeed = 45;
+    
+    direction = glm::vec4(glm::normalize(lookAt - position), 0.0f);
+    yaw = glm::degrees(std::atan2(direction.z, direction.x));
+    pitch = glm::degrees(glm::asin(direction.y));
+    
+    mouseLastPosition = glm::vec2(0,0);
 }
 
 void CameraKeyboard::step(double deltaTime)
@@ -15,39 +20,64 @@ void CameraKeyboard::step(double deltaTime)
 
     if (inputManager->mouseState.buttonState[GLFW_MOUSE_BUTTON_RIGHT])
     {
-        direction = glm::vec4(0, 0, 0, 0);
+        float horizontalInput = 0;
+        float verticalInput = 0;
+        float altInput = 0;
+        
+        glm::vec2 currentMousePosition = glm::vec2(inputManager->getCursorPosX(), inputManager->getCursorPosY());
+        glm::vec2 mouseDelta = currentMousePosition - mouseLastPosition;
+        
+        mouseLastPosition = currentMousePosition;
 
         if (inputManager->isPressed(GLFW_KEY_W))
         {
-            direction.z += 1;
+            verticalInput++;
         }
         if (inputManager->isPressed(GLFW_KEY_S))
         {
-            direction.z -= 1;
+            verticalInput--;
         }
         if (inputManager->isPressed(GLFW_KEY_A))
         {
-            direction.x += 1;
+            horizontalInput++;
         }
         if (inputManager->isPressed(GLFW_KEY_D))
         {
-            direction.x -= 1;
+            horizontalInput--;
         }
         if (inputManager->isPressed(GLFW_KEY_Q))
         {
-            direction.y -= 1;
+            altInput++;
         }
         if (inputManager->isPressed(GLFW_KEY_E))
         {
-            direction.y += 1;
+            altInput--;
         }
-
-        if (direction == glm::vec4(0, 0, 0, 0)) return;
         
-        direction = glm::normalize(direction);
-        direction = direction * (speed * static_cast<float>(deltaTime));
+        yaw += mouseDelta.x * 0.1f;
+        pitch -= mouseDelta.y * 0.1f;
 
-        this->position += direction;
-        this->lookAt += glm::vec3(direction);
+        pitch = std::min(pitch, 89.0f);
+        pitch = std::max(pitch, -89.0f);
+
+        glm::vec3 newDirection;
+        newDirection.x = glm::cos(glm::radians(yaw)) * glm::cos(glm::radians(pitch));
+        newDirection.y = glm::sin(glm::radians(pitch));
+        newDirection.z = glm::sin(glm::radians(yaw)) * glm::cos(glm::radians(pitch));
+        
+        if (newDirection != glm::vec3(0.0))
+            direction = glm::vec4(glm::normalize(newDirection), 0.0f);
+        
+        glm::vec3 cameraRight = glm::normalize(glm::cross(up, glm::vec3(direction)));
+        
+        glm::vec3 movementDirection = verticalInput * glm::vec3(direction) + horizontalInput * cameraRight + altInput * up;
+
+        if (movementDirection != glm::vec3(0.0))
+        {
+            this->position += glm::vec4(glm::normalize(movementDirection) * (speed * static_cast<float>(deltaTime)), 0);
+        }
+        setLookAt(glm::vec3(position + direction));
+        
+        computeViewMatrix();
     }
 }
