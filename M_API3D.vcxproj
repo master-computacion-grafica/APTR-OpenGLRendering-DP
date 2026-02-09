@@ -288,6 +288,10 @@
     <Content Include="data\asian_town.msh" />
     <Content Include="data\asian_town.obj" />
     <Content Include="data\asian_town.png" />
+    <Content Include="data\lightBox\front.png" />
+    <Content Include="data\lightBox\texturedCube.msh" />
+    <Content Include="data\lightBox\texturedCube.obj" />
+    <Content Include="data\lightBox\top.png" />
     <Content Include="data\textures\front.png" />
     <Content Include="data\textures\top.png" />
   </ItemGroup>

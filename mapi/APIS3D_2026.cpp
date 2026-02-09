@@ -17,23 +17,28 @@ int main(int argc, char** argv)
 	// Inicializar la clase System
 	System::initSystem();
 
-	CameraKeyboard* cam = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(1.0f, 1.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
+	// Crear y anadir la camara
+	CameraKeyboard* cam = new CameraKeyboard(
+		projectionType_e::KEYBOARD,
+		glm::vec3(1.0f, 1.0f, 3.0f),
+		glm::vec3(0.0f, 0.0f, 0.0f),
+		glm::vec3(0.0f, 1.0f, 0.0f),
+		1.0f
+	);
 	World* world = System::getWorld();
 	world->addCamera(cam);
 	world->setActiveCamera(world->getCameraIndex(cam));
 
-	//Crear objeto ciudad
-	Object3D* town = new Object3D();
-
-	// Cargar mallas desde archivo
-	town->loadDataFromFile("./data/asian_town.msh");
-	
-	town->setPosition(glm::vec4(0,0,0,0));
-	town->setRotation(glm::vec4(0,0,0,0));
-	town->setScale(glm::vec4(1,1,1,1));
-
+	//Crear, cargar y anadir el objeto ciudad
+	Object3D* town = new Object3D(
+		glm::vec4(0,0,0,1),
+		glm::vec4(0,0,0,0),
+		glm::vec4(1,1,1,1)
+	);
+	town->loadDataFromFile("data/lightBox/texturedCube.msh");
 	System::addObject(town);
 
+	// Empezar bucle del sistema
 	while (!System::getEnd())
 	{
 		System::mainLoop();
