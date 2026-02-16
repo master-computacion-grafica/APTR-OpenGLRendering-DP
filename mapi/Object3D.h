@@ -19,7 +19,8 @@ public:
 
 	virtual void step(double deltaTime);
 
-
+	void recomputeNormals();
+	
 	// DESTRUCTOR //
 
 	~Object3D() override = default;

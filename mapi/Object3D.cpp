@@ -40,8 +40,21 @@ void Object3D::loadDataFromFile(std::string file)
 				texture->load(textureNode.child("layer").text().as_string());
 				dynamic_cast<GLTexture*>(texture)->setupGLTexture();
 				material->setTexture(texture);
-				
+			} else
+			{
+				textureNode = materialNode.child("color");
+
+				if (textureNode)
+				{
+					std::string colorStr = textureNode.text().as_string();
+					auto colorComponents = splitString<float>(colorStr, ',');
+					material->setColor(glm::vec4(colorComponents[0], colorComponents[1], colorComponents[2], 1));
+				} else
+				{
+					material->setColor(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+				}
 			}
+			
 			auto shaderNode = materialNode.child("shader");
 			if (shaderNode)
 			{
@@ -52,6 +65,18 @@ void Object3D::loadDataFromFile(std::string file)
 				material->loadProgram(shaderList);
 			}
 
+			auto lightNode = materialNode.child("light");
+			if (lightNode)
+			{
+				material->setLightEnable(lightNode.text().as_bool());
+			}
+
+			auto shininessNode = materialNode.child("shininess");
+			if (shininessNode)
+			{
+				material->setShininess(shininessNode.text().as_float());
+			}
+
 			std::string meshData = bufferNode.child("meshData").text().as_string();
 			loadObj(meshData, material);
 		}
@@ -60,6 +85,31 @@ void Object3D::loadDataFromFile(std::string file)
 	else {
 		// No se ha podido cargar
 		std::cout << result.description() << std::endl;
+	}
+}
+
+void Object3D::recomputeNormals()
+{
+	for (auto& m : meshes) {
+		std::vector<vertex_t> vertexList = m->getVertexList();
+		
+		for (auto& v : vertexList) //por cada v�rtice, resetear sus normales
+			v.vNormal = { 0,0,0,0 };
+		for (auto it = m->getTriangleIndexList()->begin(); it != m->getTriangleIndexList()->end();)//recorrer la lista de indices de vertices
+		{
+			//cada tres vertices, una faceta
+			vertex_t& v1 = vertexList[*it]; it++; 
+			vertex_t& v2 = vertexList[*it]; it++;
+			vertex_t& v3 = vertexList[*it]; it++;
+			
+			glm::vec3 l1 = glm::normalize(v2.vPosition - v1.vPosition); //obtener dos aristas
+			glm::vec3 l2 = glm::normalize(v2.vPosition - v3.vPosition);
+			glm::vec3 norm = glm::normalize(glm::cross(l2, l1)); //obtener la normal
+			
+			v1.vNormal = glm::normalize(v1.vNormal + glm::vec4(norm, 0.0f)); //acumular la normal, en caso de ser v�rtices compartidos
+			v2.vNormal = glm::normalize(v2.vNormal + glm::vec4(norm, 0.0f));
+			v3.vNormal = glm::normalize(v3.vNormal + glm::vec4(norm, 0.0f));
+		}
 	}
 }
 
@@ -74,6 +124,8 @@ void Object3D::loadObj(std::string objFile, Material* material)
         std::string line;
         Mesh3D* m = nullptr;
         int vertexOffset = 0;
+		bool computeNormals = true;
+	
         while (std::getline(f, line, '\n')) {
             std::istringstream str(line);
             std::string key;
@@ -98,6 +150,8 @@ void Object3D::loadObj(std::string objFile, Material* material)
                     glm::vec4 v(0);
                     str >> v.x >> v.y >> v.z;
                     vNorm.push_back(v);
+
+                	if (computeNormals) computeNormals = false;
                 }
 
                 else if (key == "vt")
@@ -115,15 +169,16 @@ void Object3D::loadObj(std::string objFile, Material* material)
                     {
                         str >> vert;
                         auto indexes = splitString<int>(vert, '/');
-                        v[i] = { vPos[indexes[0] - 1],{0,0,0,0},//vNorm[indexes[2] -m1],
+                        v[i] = { vPos[indexes[0] - 1],{0,0,0,0},vNorm[indexes[2] - m1],
                             vTC[indexes[1] - 1] };
                         m->getVertexList()[indexes[0] - 1 - vertexOffset] = v[i];
                         m->getTriangleIndexList()->push_back(indexes[0] - 1 - vertexOffset);
-                	
                     }
                 }
             }
         }
+		if (computeNormals)
+			this->recomputeNormals();
         if (m) meshes.push_back(m);
 }
 
