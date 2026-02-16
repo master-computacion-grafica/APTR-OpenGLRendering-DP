@@ -242,8 +242,8 @@
     <ClCompile Include="mapi\GL4Render.cpp" />
     <ClCompile Include="mapi\GLFWInputManager.cpp" />
     <ClCompile Include="mapi\GLTexture.cpp" />
-    <ClCompile Include="mapi\Light.cpp" />
     <ClCompile Include="mapi\Mesh3D.cpp" />
+    <ClCompile Include="mapi\OrbitalLight.cpp" />
     <ClCompile Include="mapi\Program.cpp" />
     <ClCompile Include="mapi\Shader.cpp" />
     <ClCompile Include="mapi\Object3D.cpp" />
@@ -271,6 +271,7 @@
     <ClInclude Include="mapi\Mesh3D.h" />
     <ClInclude Include="mapi\Object.h" />
     <ClInclude Include="mapi\Object3D.h" />
+    <ClInclude Include="mapi\OrbitalLight.h" />
     <ClInclude Include="mapi\Program.h" />
     <ClInclude Include="mapi\Render.h" />
     <ClInclude Include="mapi\Shader.h" />

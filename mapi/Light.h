@@ -10,7 +10,7 @@ enum lightType
 
 class Light : public Entity
 {
-private:
+protected:
 
     // ATTRIBUTES //
 
@@ -29,7 +29,17 @@ public:
 
     // CONSTRUCTOR //
 
-    Light();
+    Light(glm::vec4 position, glm::vec4 rotation, glm::vec4 scale, lightType type, glm::vec4 color, glm::vec4 direction, float lienarAttenuation, bool enabled)
+    {
+        this->position = position;
+        this->rotation = rotation;
+        this->scale = scale;
+
+        this->type = type;
+        this->direction = direction;
+        this->color = color;
+        this->enabled = enabled;
+    }
 
 
     // GETTERS && SETTERS //
