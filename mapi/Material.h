@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 
 #include "RenderProgram.h"
 
@@ -45,12 +45,3 @@ public:
 
 	virtual void prepare() = 0;
 };
-
-
-//public:
-//
-//	//propiedades de dibujado
-//	Program* renderProgram = nullptr;
-//	GLTexture* texture = nullptr;
-//
-//	Material();

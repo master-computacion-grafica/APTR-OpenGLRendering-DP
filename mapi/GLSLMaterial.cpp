@@ -42,8 +42,12 @@ void GLSLMaterial::prepare()
 	World* world = System::getWorld();
 	Camera* cam = world->getCamera(world->getActiveCamera());
 
-	glm::mat4 MVP = cam->getProjection() * cam->getView() * System::getModelMatrix();
+	glm::mat4 M = System::getModelMatrix();
+	glm::mat4 MVP = cam->getProjection() * cam->getView() * M;
 	program->setMatrix("MVP", MVP);
+	program->setMatrix("M", M);
+	program->setMatrix("NORM", glm::transpose(glm::inverse(M)));
+	
 	program->setVertexAttrib("vPos", sizeof(vertex_t), (void*)offsetof(vertex_t, vPosition), 4, GL_FLOAT);
 	program->setVertexAttrib("vColor", sizeof(vertex_t), (void*)offsetof(vertex_t, vColor), 4, GL_FLOAT);
 	program->setVertexAttrib("vTexCoord", sizeof(vertex_t), (void*)offsetof(vertex_t, vTexCoords), 2, GL_FLOAT);
@@ -55,6 +59,14 @@ void GLSLMaterial::prepare()
 	{
 		program->setColorTextEnable();
 		program->bindColorTextureSample(texture->getTextureID(), texture);
+	}
+
+	if (lightEnable)
+	{
+		program->setFloat("shininess", shininess);
+
+		program->setLight(*(world->getLight(0)));
+		program->setFloat("ambient", world->getAmbient());
 	}
 	
 	program->readVarList();

@@ -20,6 +20,16 @@ int World::getActiveCamera()
     return this->activeCamera;
 }
 
+std::list<Light*>& World::getLights()
+{
+    return this->lights;
+}
+
+float World::getAmbient()
+{
+    return this->ambient;
+}
+
 void World::setObjects(std::list<Object*> objects)
 {
     this->objects = objects;
@@ -44,6 +54,16 @@ void World::setActiveCamera(int activeCamera)
     {
         this->activeCamera = activeCamera;
     }
+}
+
+void World::setLigths(std::list<Light*> lights)
+{
+    this->lights = lights;
+}
+
+void World::setAmbient(float ambient)
+{
+    this->ambient = ambient;
 }
 
 void World::addObject(Object* obj)
@@ -75,6 +95,11 @@ void World::update(double deltaTime)
     {
         obj->step(deltaTime);
         obj->computeModelMatrix();
+    }
+
+    for (Light* light : lights)
+    {
+        light->step(deltaTime);
     }
     
     if (System::getInputManager()->wasPressedThisFrame(GLFW_KEY_C))
@@ -126,4 +151,24 @@ int World::getCameraIndex(Camera* cam)
         return -1;
     
     return index;
+}
+
+Light* World::getLight(int pos)
+{
+    auto iterator = lights.begin();
+    std::advance(iterator, pos);
+
+    return *iterator;
+}
+
+void World::addLight(Light* light)
+{
+    lights.push_back(light);
+}
+
+void World::deleteLight(int lightPos)
+{
+    auto iterator = lights.begin();
+    std::advance(iterator, lightPos);
+    lights.erase(iterator);
 }

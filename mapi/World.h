@@ -1,8 +1,9 @@
-#pragma once
+	#pragma once
 
 #include "mapi/common.h"
 #include "Object.h"
 #include "Camera.h"
+#include "Light.h"
 
 
 class World
@@ -13,6 +14,8 @@ private:
 
 	std::list<Object*> objects;
 	std::list<Camera*> cameras;
+	std::list<Light*> lights;
+	float ambient;
 
 	int activeCamera;
 
@@ -29,10 +32,14 @@ public:
 	std::list<Object*>& getObjects();
 	std::list<Camera*>& getCameras();
 	int getActiveCamera();
+	std::list<Light*>& getLights();
+	float getAmbient();
 
 	void setObjects(std::list<Object*> objects);
 	void setCameras(std::list<Camera*> cameras);
 	void setActiveCamera(int activeCamera);
+	void setLigths(std::list<Light*> lights);
+	void setAmbient(float ambient);
 
 
 	// METHODS && FUNCTIONS //
@@ -56,6 +63,12 @@ public:
 	Camera* getCamera(size_t index);
 
 	int getCameraIndex(Camera* cam);
+
+	Light* getLight(int pos);
+
+	void addLight(Light* light);
+
+	void deleteLight(int lightPos);
 
 };
 

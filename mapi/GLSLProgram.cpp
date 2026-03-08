@@ -2,6 +2,7 @@
 
 #include "GLSLShader.h"
 #include "GLTexture.h"
+#include "Light.h"
 
 GLSLProgram::~GLSLProgram()
 = default;
@@ -85,12 +86,20 @@ void GLSLProgram::setMatrix(std::string name, const glm::mat4& matrix)
 
 void GLSLProgram::setColorTextEnable()
 {
-    glUniform1i(varList["useColorText"], 1);
+    glUniform1i(varList["mat.useColorText"], 1);
 }
 
 void GLSLProgram::setColorTextDisable()
 {
-    glUniform1i(varList["useColorText"], 0);
+    glUniform1i(varList["mat.useColorText"], 0);
+}
+
+void GLSLProgram::setLight(Light& l)
+{
+    glUniform3f(varList["light.pos"], l.getPosition().x, l.getPosition().y, l.getPosition().z);
+    glUniform1i(varList["light.type"], l.getType());
+    glUniform3f(varList["light.color"], l.getColor().x, l.getColor().y, l.getColor().z);
+    glUniform1f(varList["light.linearAttenuation"], l.getLinearAttenuation());
 }
 
 void GLSLProgram::bindColorTextureSample(int binding, Texture* texture)
@@ -102,7 +111,7 @@ void GLSLProgram::bindColorTextureSample(int binding, Texture* texture)
     else
         textureType = GL_TEXTURE_2D;
     glBindTexture(textureType, dynamic_cast<GLTexture*>(texture)->getGlTextureID());
-    glUniform1i(varList["colorText"], binding);
+    glUniform1i(varList["mat.colorText"], binding); 
     
 }
 

@@ -16,10 +16,11 @@ public:
     void setVec3(std::string name, const glm::vec3& vec) override;
     void setVec4(std::string name, const glm::vec4& vec) override;
     void setMatrix(std::string name, const glm::mat4& matrix) override;
+    void setColorTextEnable() override;
+    void setColorTextDisable() override;
+    void setLight(Light& l) override;
     
     void readVarList() override;
     unsigned int getVarLocation(std::string varName) override;
-    void setColorTextEnable() override;
-    void setColorTextDisable() override;
     void bindColorTextureSample(int binding, Texture* texture) override;
 };
