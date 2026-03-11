@@ -38,12 +38,12 @@ void GL4Render::setupObject(Object* obj)
         glGenBuffers(1, &bo.vertexIdxArrayId);
         //copiar datos a GPU
         glBindVertexArray(bo.arrayBufferId); //activar lista de arrays
-        glBindBuffer(GL_ARRAY_BUFFER, bo.vertexArrayId);//activar lista de v�rtices
+        glBindBuffer(GL_ARRAY_BUFFER, bo.vertexArrayId);//activar lista de vertices
     
         int numElements = obj->getMesh(i)->vVertList.size();
         glBufferData(GL_ARRAY_BUFFER, numElements *sizeof(vertex_t), obj->getMesh(i)->vVertList.data(), GL_STATIC_DRAW); //copiar vertices
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bo.vertexIdxArrayId);//activar lista de indices de v�rtices
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bo.vertexIdxArrayId);//activar lista de indices de vertices
         numElements = obj->getMesh(i)->getTriangleIndexList()->size();
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, numElements * sizeof(unsigned int), obj->getMesh(i)->getTriangleIndexList()->data(), GL_STATIC_DRAW); //copiar indices de vertices
         //guardar ids de buffers

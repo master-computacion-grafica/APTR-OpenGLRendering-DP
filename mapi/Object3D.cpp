@@ -115,71 +115,99 @@ void Object3D::recomputeNormals()
 
 void Object3D::loadObj(std::string objFile, Material* material)
 {
+    std::ifstream f(objFile, std::ios_base::in);
+    std::vector<glm::vec4> vPos;
+    std::vector<glm::vec2> vTC;
+    std::vector<glm::vec4> vNorm;
+    std::string line;
+    Mesh3D* m = nullptr;
+    int vertexOffset = 0;
+	bool computeNormals = true;
 
-	
-        std::ifstream f(objFile, std::ios_base::in);
-        std::vector<glm::vec4> vPos;
-        std::vector<glm::vec2> vTC;
-        std::vector<glm::vec4> vNorm;
-        std::string line;
-        Mesh3D* m = nullptr;
-        int vertexOffset = 0;
-		bool computeNormals = true;
-	
-        while (std::getline(f, line, '\n')) {
-            std::istringstream str(line);
-            std::string key;
-            str >> key;
-            if (key[0] != '#') {
-                if (key == "o")
-                {
-                    if (m) meshes.push_back(m);
-                    m = new Mesh3D();
-                    m->setMaterial(material);
-                    vertexOffset = vPos.size();
-                }
-                else if (key == "v")
-                {
-                    glm::vec4 v(1.0f);
-                    str >> v.x >> v.y >> v.z;
-                    vPos.push_back(v);
-                	m->getVertexList().push_back(vertex_t{});
-                }
-                else if (key == "vn")
-                {
-                    glm::vec4 v(0);
-                    str >> v.x >> v.y >> v.z;
-                    vNorm.push_back(v);
+    while (std::getline(f, line, '\n')) {
+        std::istringstream str(line);
+        std::string key;
+        str >> key;
+        if (key[0] != '#') {
+            if (key == "o")
+            {
+                if (m) meshes.push_back(m);
+                m = new Mesh3D();
+                m->setMaterial(material);
+                vertexOffset = vPos.size();
+            }
+            else if (key == "v")
+            {
+                glm::vec4 v(1.0f);
+                str >> v.x >> v.y >> v.z;
+                vPos.push_back(v);
+                m->getVertexList().push_back(vertex_t{});
+            }
+            else if (key == "vn")
+            {
+                glm::vec4 v(0);
+                str >> v.x >> v.y >> v.z;
+                vNorm.push_back(v);
 
-                	if (computeNormals) computeNormals = false;
-                }
+                if (computeNormals) computeNormals = false;
+            }
 
-                else if (key == "vt")
+            else if (key == "vt")
+            {
+                glm::vec2 v(0);
+                str >> v.x >> v.y;
+                vTC.push_back(v);
+            }
+            else if (key == "f")
+            {
+                std::string vert;
+                vertex_t v[3];
+                
+                for (int i = 0; i < 3; i++)
                 {
-                    glm::vec2 v(0);
-                    str >> v.x >> v.y;
-                    vTC.push_back(v);
-                }
-                else if (key == "f")
-                {
-                    std::string vert;
-                    vertex_t v[3];
-                    int vIndex[3] = { 0 };
-                    for (int i = 0; i < 3; i++)
+                    str >> vert;
+                    auto indexes = splitString<int>(vert, '/');
+
+                	glm::vec4 pos;
+                	glm::vec2 tCoords;
+                	glm::vec4 norm;
+                    switch (indexes.size())
                     {
-                        str >> vert;
-                        auto indexes = splitString<int>(vert, '/');
-                        v[i] = { vPos[indexes[0] - 1],{0,0,0,0},vNorm[indexes[2] - m1],
-                            vTC[indexes[1] - 1] };
-                        m->getVertexList()[indexes[0] - 1 - vertexOffset] = v[i];
-                        m->getTriangleIndexList()->push_back(indexes[0] - 1 - vertexOffset);
+                    case 1:
+                    	pos = vPos[indexes[0] - 1];
+                		tCoords = glm::vec2(0.0f, 0.0f);
+                		norm = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+                    	break;
+                    case 2:
+                    	pos = vPos[indexes[0] - 1];
+                		tCoords = vTC[indexes[1] - 1];
+                		norm = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+                    	break;
+                    case 3:
+                    	pos = vPos[indexes[0] - 1];
+                    	tCoords = vTC[indexes[1] - 1];
+                    	norm = vNorm[indexes[2] - 1];
+                    	break;
+                    default:
+                    	std::cout << "ERROR: The .obj file constructs the faces wrongly!" << std::endl;
+                	 break;
                     }
+
+                	v[i] = { pos,{0,0,0,0}, tCoords,
+						norm};
+                	// v[i] = { vPos[indexes[0] - 1],{0,0,0,0}, vTC[indexes[1] - 1],
+                	// 	vNorm[indexes[2] - 1]};
+                    
+                    m->getVertexList()[indexes[0] - 1 - vertexOffset] = v[i];
+                    m->getTriangleIndexList()->push_back(indexes[0] - 1 - vertexOffset);
                 }
             }
         }
-		if (computeNormals)
-			this->recomputeNormals();
-        if (m) meshes.push_back(m);
+    }
+    if (m) meshes.push_back(m);
+
+	if (computeNormals)
+		this->recomputeNormals();
 }
 
 void Object3D::step(double deltaTime)

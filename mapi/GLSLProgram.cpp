@@ -100,6 +100,7 @@ void GLSLProgram::setLight(Light& l)
     glUniform1i(varList["light.type"], l.getType());
     glUniform3f(varList["light.color"], l.getColor().x, l.getColor().y, l.getColor().z);
     glUniform1f(varList["light.linearAttenuation"], l.getLinearAttenuation());
+    glUniform1i(varList["light.enabled"], l.getEnabled());
 }
 
 void GLSLProgram::bindColorTextureSample(int binding, Texture* texture)

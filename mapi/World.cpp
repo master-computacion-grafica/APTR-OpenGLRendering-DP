@@ -158,7 +158,11 @@ Light* World::getLight(int pos)
     auto iterator = lights.begin();
     std::advance(iterator, pos);
 
-    return *iterator;
+    if (iterator != lights.end())
+    {
+        return *iterator;
+    }
+    return nullptr;
 }
 
 void World::addLight(Light* light)
