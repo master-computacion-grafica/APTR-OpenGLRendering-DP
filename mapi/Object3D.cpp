@@ -92,7 +92,7 @@ void Object3D::loadDataFromFile(std::string file)
 void Object3D::recomputeNormals()
 {
 	for (auto& m : meshes) {
-		std::vector<vertex_t> vertexList = m->getVertexList();
+		std::vector<vertex_t>& vertexList = m->getVertexList();
 		
 		for (auto& v : vertexList) //por cada vertice, resetear sus normales
 			v.vNormal = { 0,0,0,0 };
