@@ -15,7 +15,7 @@ int Mesh3D::getMeshID()
     return meshID;
 }
 
-std::vector<vertex_t> &Mesh3D::getVertexList()
+std::vector<vertex_t>& Mesh3D::getVertexList()
 {
     return vVertList;
 }
