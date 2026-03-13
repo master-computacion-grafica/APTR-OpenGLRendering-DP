@@ -49,7 +49,8 @@ void Object3D::loadDataFromFile(std::string file)
 					std::string colorStr = textureNode.text().as_string();
 					auto colorComponents = splitString<float>(colorStr, ',');
 					material->setColor(glm::vec4(colorComponents[0], colorComponents[1], colorComponents[2], 1));
-				} else
+				}
+				else
 				{
 					material->setColor(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 				}
@@ -93,12 +94,13 @@ void Object3D::recomputeNormals()
 	for (auto& m : meshes) {
 		std::vector<vertex_t> vertexList = m->getVertexList();
 		
-		for (auto& v : vertexList) //por cada v�rtice, resetear sus normales
+		for (auto& v : vertexList) //por cada vertice, resetear sus normales
 			v.vNormal = { 0,0,0,0 };
+		
 		for (auto it = m->getTriangleIndexList()->begin(); it != m->getTriangleIndexList()->end();)//recorrer la lista de indices de vertices
 		{
 			//cada tres vertices, una faceta
-			vertex_t& v1 = vertexList[*it]; it++; 
+			vertex_t& v1 = vertexList[*it]; it++;
 			vertex_t& v2 = vertexList[*it]; it++;
 			vertex_t& v3 = vertexList[*it]; it++;
 			
@@ -106,7 +108,7 @@ void Object3D::recomputeNormals()
 			glm::vec3 l2 = glm::normalize(v2.vPosition - v3.vPosition);
 			glm::vec3 norm = glm::normalize(glm::cross(l2, l1)); //obtener la normal
 			
-			v1.vNormal = glm::normalize(v1.vNormal + glm::vec4(norm, 0.0f)); //acumular la normal, en caso de ser v�rtices compartidos
+			v1.vNormal = glm::normalize(v1.vNormal + glm::vec4(norm, 0.0f)); //acumular la normal, en caso de ser vertices compartidos
 			v2.vNormal = glm::normalize(v2.vNormal + glm::vec4(norm, 0.0f));
 			v3.vNormal = glm::normalize(v3.vNormal + glm::vec4(norm, 0.0f));
 		}
@@ -193,10 +195,7 @@ void Object3D::loadObj(std::string objFile, Material* material)
                 	 break;
                     }
 
-                	v[i] = { pos,{0,0,0,0}, tCoords,
-						norm};
-                	// v[i] = { vPos[indexes[0] - 1],{0,0,0,0}, vTC[indexes[1] - 1],
-                	// 	vNorm[indexes[2] - 1]};
+                	v[i] = { pos,{0,0,0,0}, tCoords, norm};
                     
                     m->getVertexList()[indexes[0] - 1 - vertexOffset] = v[i];
                     m->getTriangleIndexList()->push_back(indexes[0] - 1 - vertexOffset);
@@ -204,6 +203,7 @@ void Object3D::loadObj(std::string objFile, Material* material)
             }
         }
     }
+	
     if (m) meshes.push_back(m);
 
 	if (computeNormals)

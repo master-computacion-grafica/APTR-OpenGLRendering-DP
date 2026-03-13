@@ -30,15 +30,15 @@ int main(int argc, char** argv)
 	world->setAmbient(1.0f);
 
 	Light* light = new Light(
-				glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
-				glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
-				glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
-				lightType::POINT,
-				glm::vec4(1.0f, 0.2f, 0.2f, 1.0f),
-				glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
-				1.0f,
-				false
-			);
+		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+		lightType::POINT,
+		glm::vec4(1.0f, 0.2f, 0.2f, 1.0f),
+		glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+		0.2f,
+		false
+	);
 
 	world->addLight(light);
 	
