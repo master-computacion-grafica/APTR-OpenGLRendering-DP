@@ -34,26 +34,24 @@ void Object3D::loadDataFromFile(std::string file)
 			if (textureNode)
 			{
 				//layers
-				//a�adir nueva textura
+				//anyadir nueva textura
 				
 				auto texture = FactoryEngine::getNewTexture();
 				texture->load(textureNode.child("layer").text().as_string());
 				dynamic_cast<GLTexture*>(texture)->setupGLTexture();
 				material->setTexture(texture);
-			} else
+			}
+			
+			auto colorNode = materialNode.child("color");
+			if (colorNode)
 			{
-				textureNode = materialNode.child("color");
-
-				if (textureNode)
-				{
-					std::string colorStr = textureNode.text().as_string();
-					auto colorComponents = splitString<float>(colorStr, ',');
-					material->setColor(glm::vec4(colorComponents[0], colorComponents[1], colorComponents[2], 1));
-				}
-				else
-				{
-					material->setColor(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-				}
+				std::string colorStr = colorNode.text().as_string();
+				auto colorComponents = splitString<float>(colorStr, ',');
+				material->setColor(glm::vec4(colorComponents[0], colorComponents[1], colorComponents[2], 1));
+			}
+			else
+			{
+				material->setColor(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 			}
 			
 			auto shaderNode = materialNode.child("shader");
@@ -163,7 +161,6 @@ void Object3D::loadObj(std::string objFile, Material* material)
             else if (key == "f")
             {
                 std::string vert;
-                vertex_t v[3];
                 
                 for (int i = 0; i < 3; i++)
                 {
@@ -194,10 +191,8 @@ void Object3D::loadObj(std::string objFile, Material* material)
                     	std::cout << "ERROR: The .obj file constructs the faces wrongly!" << std::endl;
                 	 break;
                     }
-
-                	v[i] = { pos,{0,0,0,0}, tCoords, norm};
                     
-                    m->getVertexList()[indexes[0] - 1 - vertexOffset] = v[i];
+                    m->getVertexList()[indexes[0] - 1 - vertexOffset] = {pos, material->getColor(), tCoords, norm};
                     m->getTriangleIndexList()->push_back(indexes[0] - 1 - vertexOffset);
                 }
             }

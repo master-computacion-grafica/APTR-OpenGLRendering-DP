@@ -69,7 +69,8 @@ void GLSLMaterial::prepare()
 		{
 			// Si el mundo tiene luces settearlas para el shader de fragmentos
 			program->setLight(*(world->getLight(0)));
-		} else
+		}
+		else
 		{
 			// En caso contrario, settear una luz apagada (para que funcione el shader de fragmentos)
 			Light l(
@@ -77,7 +78,7 @@ void GLSLMaterial::prepare()
 				glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
 				glm::vec4(0.0f, 0.0f, 0.0f, 0.0f),
 				lightType::POINT,
-				glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+				glm::vec4(0.0f, 0.0f, 0.0f, 0.0f),
 				glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
 				1.0f,
 				false
@@ -85,6 +86,10 @@ void GLSLMaterial::prepare()
 			program->setLight(l);
 		}	
 		program->setFloat("ambient", world->getAmbient());
+	}
+	else
+	{
+		program->setFloat("ambient", 1.0f);
 	}
 	
 	program->readVarList();
