@@ -41,6 +41,7 @@ public:
 	virtual void setVertexAttrib(std::string name, GLsizei stride, void* offset, GLint count, GLenum type) = 0;
 	virtual void setInt(std::string name, int val) = 0;
 	virtual void setFloat(std::string name, float val) = 0;
+	virtual void setBool(std::string name, bool val) = 0;
 	virtual void setVec3(std::string name, const glm::vec3& vec) = 0;
 	virtual void setVec4(std::string name, const glm::vec4& vec) = 0;
 	virtual void setMatrix(std::string name, const glm::mat4& matrix) = 0;

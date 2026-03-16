@@ -63,7 +63,8 @@ void GLSLMaterial::prepare()
 
 	if (lightEnable)
 	{
-		program->setFloat("shininess", shininess);
+		program->setBool("mat.lightEnable", true);
+		program->setFloat("mat.shininess", shininess);
 		
 		if (!world->getLights().empty())
 		{

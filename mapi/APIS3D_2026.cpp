@@ -18,8 +18,8 @@ int main(int argc, char** argv)
 	System::initSystem();
 
 	// Crear y anyadir las camaras
-	CameraFPS* camFPS = new CameraFPS(projectionType_e::FPS, glm::vec3(0.6f, 1.0f, 0.9f), glm::vec3(-0.54f, -0.93f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 0.7f);
-	CameraKeyboard* camKeyboard = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(0.6f, 1.0f, 0.9f), glm::vec3(-0.54f, -0.93f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 0.7f);
+	CameraFPS* camFPS = new CameraFPS(projectionType_e::FPS, glm::vec3(0.6f, 1.0f, 0.9f), glm::vec3(-0.54f, -0.93f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
+	CameraKeyboard* camKeyboard = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(0.6f, 1.0f, 0.9f), glm::vec3(-0.54f, -0.93f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
 
 	World* world = System::getWorld();
 	world->addCamera(camFPS);
@@ -30,7 +30,7 @@ int main(int argc, char** argv)
 	world->setAmbient(0.2f);
 
 	Light* light = new Light(
-		glm::vec4(2.0f, 2.0f, 2.0f, 1.0f),
+		glm::vec4(-0.54f, -1.2f, -1.0f, 1.0f),
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
 		glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
 		lightType::POINT,
@@ -55,11 +55,11 @@ int main(int argc, char** argv)
 
 	// Cargar mallas desde archivo
 	// fengshui->loadDataFromFile("./data/feng_shui/Feng_Shui.msh");
-	// fengshui->setPosition(glm::vec4(-0.54f, -0.93f, -1.0f, 0.0f));
+	// fengshui->setPosition(glm::vec4(-0.54f, -0.93f, -1.0f, 1.0f));
 	// fengshui->setScale(glm::vec4(0.005f, 0.005f, 0.005f, 1.0f));
 
 	box->loadDataFromFile("./data/lightBox/texturedCube.msh");
-	box->setPosition(glm::vec4(-0.54f, -0.93f, -1.0f, 0.0f));
+	box->setPosition(glm::vec4(-0.54f, -0.93f, -1.0f, 1.0f));
 
 	// Anyadir el objeto al mundo
 	// System::addObject(fengshui);

@@ -69,6 +69,11 @@ void GLSLProgram::setFloat(std::string name, float val)
     glUniform1f(varList[name], val);
 }
 
+void GLSLProgram::setBool(std::string name, bool val)
+{
+    glUniform1i(varList[name], val);
+}
+
 void GLSLProgram::setVec3(std::string name, const glm::vec3& vec)
 {
     glUniform3f(varList[name], vec.x, vec.y, vec.z);

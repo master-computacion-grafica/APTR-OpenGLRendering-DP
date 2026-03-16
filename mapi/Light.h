@@ -38,6 +38,7 @@ public:
         this->type = type;
         this->direction = direction;
         this->color = color;
+        this->linearAttenuation = lienarAttenuation;
         this->enabled = enabled;
     }
 
