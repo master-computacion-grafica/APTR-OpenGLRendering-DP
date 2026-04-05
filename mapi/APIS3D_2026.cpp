@@ -3,9 +3,9 @@
 #include "CameraFPS.h"
 #include "FactoryEngine.h"
 #include "System.h"
-#include "TrianguloRot.h"
 #include "CameraKeyboard.h"
 #include "CubeTex.h"
+#include "OrbitalLight.h"
 
 
 int main(int argc, char** argv)
@@ -29,18 +29,33 @@ int main(int argc, char** argv)
 	// Crear y anyadir las luces
 	world->setAmbient(0.2f);
 
-	Light* light = new Light(
-		glm::vec4(-0.54f, 4, -1.0f, 1.0f),
-		glm::vec4(30.0f, 0.0f, 0.0f, 1.0f),
+	Light* dirLight = new Light(
+		glm::vec4(0.0f, 0.0, 0.0f, 1.0f),
+		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
 		glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
 		lightType::DIRECTIONAL,
-		glm::vec4(1.0f, 0.2f, 0.2f, 1.0f),
-		glm::vec4(0.0f, 0.0f, -1.0f, 1.0f),
+		glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+		glm::vec4(0.0f, 1.0f, -1.0f, 1.0f),
 		0.2f,
 		true
 	);
+
+	OrbitalLight* pointLight = new OrbitalLight(
+		glm::vec4(-10.54f, -0.93f, -1.0f, 1.0f),
+		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+		lightType::POINT,
+		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(1.0f, 0.0f, 0.0f, 1.0f),
+		0.2f,
+		true,
+		glm::vec4(-0.54f, -0.93f, -1.0f, 1.0f),
+		10.0f,
+		1.5f
+	);
 	
-	world->addLight(light);
+	world->addLight(dirLight);
+	world->addLight(pointLight);
 	
 	//Crear objeto ciudad
 	Object3D* fengshui = new Object3D(

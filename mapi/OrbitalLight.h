@@ -12,8 +12,8 @@ private:
     glm::vec4 center;
 
     float radius;
-
     float speed;
+    float angle;
 
 
 public:

@@ -13,22 +13,26 @@ OrbitalLight::OrbitalLight(
     glm::vec4 center = glm::vec4({0.0f, 0.0f, 0.0f, 1.0f}),
     float radius = 1.0f,
     float speed = 0.5f)
-    : Light(position, rotation, scale, type, direction, color, linearAttenuation, enabled)
+    : Light(position, rotation, scale, type, color, direction, linearAttenuation, enabled)
 {
     this->center = center;
     this->radius = radius;
     this->speed = speed;
+    this->angle = 0;
 }
 
 void OrbitalLight::step(double deltaTime)
 {
-    if (System::getInputManager()->isPressed(GLFW_KEY_P))
+    if (System::getInputManager()->wasPressedThisFrame(GLFW_KEY_P))
     {
         enabled = !enabled;
     }
 
-    // this->position -= direction;
-    // this->rotation.y += speed * deltaTime;
-
-    // TODO: Ver como hacer la rotacion entorno a un punto.
+    angle += speed * deltaTime;
+    if (angle > 360.0f) angle -= 360.0f;
+    
+    float x = center.x + radius * sin(angle);
+    float z = center.z + radius * cos(angle);
+    
+    position = glm::vec4(x, center.y, z, 1.0f);
 }

@@ -19,7 +19,7 @@ public:
     void setMatrix(std::string name, const glm::mat4& matrix) override;
     void setColorTextEnable() override;
     void setColorTextDisable() override;
-    void setLight(Light& l) override;
+    void setLight(int i) override;
     
     void readVarList() override;
     unsigned int getVarLocation(std::string varName) override;

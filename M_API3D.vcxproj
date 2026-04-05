@@ -242,6 +242,7 @@
     <ClCompile Include="mapi\GL4Render.cpp" />
     <ClCompile Include="mapi\GLFWInputManager.cpp" />
     <ClCompile Include="mapi\GLTexture.cpp" />
+    <ClCompile Include="mapi\Light.cpp" />
     <ClCompile Include="mapi\Mesh3D.cpp" />
     <ClCompile Include="mapi\OrbitalLight.cpp" />
     <ClCompile Include="mapi\Program.cpp" />

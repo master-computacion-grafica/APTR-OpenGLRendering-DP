@@ -1,4 +1,7 @@
 #include "GLSLMaterial.h"
+
+#include <algorithm>
+
 #include "System.h"
 #include "GLSLProgram.h"
 
@@ -39,20 +42,24 @@ void GLSLMaterial::loadProgram(std::list<std::string> programNames)
 
 void GLSLMaterial::prepare()
 {
+	// Obtener la camara activa
 	World* world = System::getWorld();
 	Camera* cam = world->getCamera(world->getActiveCamera());
 
+	// Settear en el shader las matrices derivades del objeto y la camara
 	glm::mat4 M = System::getModelMatrix();
 	glm::mat4 MVP = cam->getProjection() * cam->getView() * M;
 	program->setMatrix("MVP", MVP);
 	program->setMatrix("M", M);
 	program->setMatrix("NORM", glm::transpose(glm::inverse(M)));
-	
+
+	// Settear en el shader los datos de los vertices
 	program->setVertexAttrib("vPos", sizeof(vertex_t), (void*)offsetof(vertex_t, vPosition), 4, GL_FLOAT);
 	program->setVertexAttrib("vColor", sizeof(vertex_t), (void*)offsetof(vertex_t, vColor), 4, GL_FLOAT);
 	program->setVertexAttrib("vTexCoord", sizeof(vertex_t), (void*)offsetof(vertex_t, vTexCoords), 2, GL_FLOAT);
 	program->setVertexAttrib("vNorm", sizeof(vertex_t), (void*)offsetof(vertex_t, vNormal), 4, GL_FLOAT);
-	
+
+	// Settear la flag de textura en el shader
 	if (!texture)
 		program->setColorTextDisable();
 	else
@@ -61,37 +68,33 @@ void GLSLMaterial::prepare()
 		program->bindColorTextureSample(texture->getTextureID(), texture);
 	}
 
+	// Si el material permite interaccion con luces
 	if (lightEnable)
 	{
+		// Settear la flag y la propiedad shininess en el shader
 		program->setBool("mat.lightEnable", true);
 		program->setFloat("mat.shininess", shininess);
-		
+
+		// Si el mundo tiene luces settearlas para el shader de fragmentos
 		if (!world->getLights().empty())
 		{
-			// Si el mundo tiene luces settearlas para el shader de fragmentos
-			program->setLight(*(world->getLight(0)));
+			// Obtener el número de luces en el mundo y tener en cuenta como maximo las 8 primeras (limite del shader)
+			int n = world->getLights().size();
+			n = glm::clamp(n, 0, 8);
+
+			// Settear en el shader tanto el numero de luces como las luces
+			program->setInt("nLights", n);
+			
+			for (int i = 0; i < n; i++)
+			{
+				program->setLight(i);
+			}
 		}
-		else
-		{
-			// En caso contrario, settear una luz apagada (para que funcione el shader de fragmentos)
-			Light l(
-				glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
-				glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
-				glm::vec4(0.0f, 0.0f, 0.0f, 0.0f),
-				lightType::POINT,
-				glm::vec4(0.0f, 0.0f, 0.0f, 0.0f),
-				glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
-				1.0f,
-				false
-			);
-			program->setLight(l);
-		}	
+
+		// Settear la componente ambiental del mundo
 		program->setFloat("ambient", world->getAmbient());
 	}
-	else
-	{
-		program->setFloat("ambient", 1.0f);
-	}
-	
+
+	// Leer la lista de variables
 	program->readVarList();
 }

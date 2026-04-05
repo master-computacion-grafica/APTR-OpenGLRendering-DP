@@ -48,7 +48,7 @@ public:
 	virtual void setColorTextEnable() = 0;
 	virtual void setColorTextDisable() = 0;
 	virtual void bindColorTextureSample(int binding, Texture* texture) = 0;
-	virtual void setLight(Light& l) = 0;
+	virtual void setLight(int i) = 0;
 
 	virtual void readVarList() = 0;
 	virtual unsigned int getVarLocation(std::string varName) = 0;

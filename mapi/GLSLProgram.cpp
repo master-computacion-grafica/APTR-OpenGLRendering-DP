@@ -3,6 +3,7 @@
 #include "GLSLShader.h"
 #include "GLTexture.h"
 #include "Light.h"
+#include "System.h"
 
 GLSLProgram::~GLSLProgram()
 = default;
@@ -99,14 +100,16 @@ void GLSLProgram::setColorTextDisable()
     glUniform1i(varList["mat.useColorText"], 0);
 }
 
-void GLSLProgram::setLight(Light& l)
+void GLSLProgram::setLight(int i)
 {
-    glUniform3f(varList["light.pos"], l.getPosition().x, l.getPosition().y, l.getPosition().z);
-    glUniform1i(varList["light.type"], l.getType());
-    glUniform3f(varList["light.color"], l.getColor().x, l.getColor().y, l.getColor().z);
-    glUniform3f(varList["light.direction"], l.getDirection().x, l.getDirection().y, l.getDirection().z);
-    glUniform1f(varList["light.linearAttenuation"], l.getLinearAttenuation());
-    glUniform1i(varList["light.enabled"], l.getEnabled());
+    Light* l = System::getWorld()->getLight(i);
+    
+    glUniform3f(varList["lights[" + std::to_string(i) + "].pos"], l->getPosition().x, l->getPosition().y, l->getPosition().z);
+    glUniform1i(varList["lights[" + std::to_string(i) + "].type"], l->getType());
+    glUniform3f(varList["lights[" + std::to_string(i) + "].color"], l->getColor().x, l->getColor().y, l->getColor().z);
+    glUniform3f(varList["lights[" + std::to_string(i) + "].direction"], l->getDirection().x, l->getDirection().y, l->getDirection().z);
+    glUniform1f(varList["lights[" + std::to_string(i) + "].linearAttenuation"], l->getLinearAttenuation());
+    glUniform1i(varList["lights[" + std::to_string(i) + "].enabled"], l->getEnabled());
 }
 
 void GLSLProgram::bindColorTextureSample(int binding, Texture* texture)

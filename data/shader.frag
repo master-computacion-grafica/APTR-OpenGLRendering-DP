@@ -20,8 +20,10 @@ struct Light
 };
 
 uniform Material mat;
-#define N_LIGHTS
+
+#define N_LIGHTS 8
 uniform Light lights[N_LIGHTS];
+uniform int nLights;
 uniform float ambient;
 
 uniform vec3 camPos;
@@ -50,70 +52,68 @@ void main()
         totalLight += vec3(ambient, ambient, ambient);
         
         // Si la luz esta activa, calcular los aportes difuso y especular
-        if (light.enabled)
+        if (nLights > 0)
         {
-            vec3 lightPos = light.pos;
-            vec3 fPos3 = fPos.xyz;
-            
-            switch (light.type)
+            for(int i; i < nLights; i++)
             {
-                case 0:
-                    // Calcular la componente difusa (utilizando el angulo de incidencia con respecto a la normal)
-                    vec3 p_normal = normalize(fNorm.xyz);
-                    vec3 p_lightRay = -1 * (normalize(light.direction));
+                Light light = lights[i];
+                
+                vec3 lightPos = light.pos;
+                vec3 fPos3 = fPos.xyz;
 
-                    diffuseComponent = light.color * max(dot(p_normal, p_lightRay), 0.0f);
-                    //diffuseComponent = p_normal;
+                switch (light.type)
+                {
+                    case 0:
+                        // Calcular la componente difusa (utilizando el angulo de incidencia con respecto a la normal)
+                        vec3 p_normal = normalize(fNorm.xyz);
+                        vec3 p_lightRay = -1 * (normalize(light.direction));
 
-                    // Calcular la componente especular (utilizando el angulo entre el rayo reflejado y el vector vista desde la camara)
-                    vec3 p_eye = normalize(fPos3 - camPos);
-                    vec3 p_half = normalize(p_eye - p_lightRay); 
-                
-                    specularComponent = light.color * pow(max(dot(p_half, p_eye), 0.0f), mat.shininess);
-                
-                    break;
-                
-                case 1:
-                    // Calcular la componente difusa (utilizando el angulo de incidencia con respecto a la normal)
-                    vec3 s_normal = normalize(fNorm.xyz);
-                    vec3 s_lightRay = normalize(lightPos - fPos3);
-                
-                    diffuseComponent = light.color * max(dot(s_normal, s_lightRay), 0.0f);
+                        diffuseComponent = light.color * max(dot(p_normal, p_lightRay), 0.0f);
 
-                    // Calcular la componente especular (utilizando el angulo entre el rayo reflejado y el vector vista desde la camara)
-                    vec3 s_reflectedRay = normalize(reflect(s_lightRay, s_normal));
-                    vec3 s_eye = normalize(fPos3 - camPos);
-                
-                    specularComponent = light.color * pow(max(dot(s_reflectedRay, s_eye), 0.0f), mat.shininess);
+                        // Calcular la componente especular (utilizando el angulo entre el rayo reflejado y el vector vista desde la camara)
+                        vec3 p_eye = normalize(fPos3 - camPos);
+                        vec3 p_half = normalize(p_eye - p_lightRay);
 
-                    // Calcular la componente de luz total
-                    float s_objectLightDistance = length(lightPos - fPos3);
-                    float s_attenuation = 1 / (1 + light.linearAttenuation * s_objectLightDistance);
+                        specularComponent = light.color * pow(max(dot(p_half, p_eye), 0.0f), mat.shininess);
 
-//                    diffuseComponent *= s_attenuation;
-//                    specularComponent *= s_attenuation;
+                        break;
 
-                    break;
-                
-                case 2:
-                
-                    break;
-                
-                default:
-                    break;
+                    case 1:
+                        // Calcular la componente difusa (utilizando el angulo de incidencia con respecto a la normal)
+                        vec3 s_normal = normalize(fNorm.xyz);
+                        vec3 s_lightRay = normalize(lightPos - fPos3);
+
+                        diffuseComponent = light.color * max(dot(s_normal, s_lightRay), 0.0f);
+
+                        // Calcular la componente especular (utilizando el angulo entre el rayo reflejado y el vector vista desde la camara)
+                        vec3 s_reflectedRay = normalize(reflect(s_lightRay, s_normal));
+                        vec3 s_eye = normalize(fPos3 - camPos);
+
+                        specularComponent = light.color * pow(max(dot(s_reflectedRay, s_eye), 0.0f), mat.shininess);
+
+                        // Calcular la componente de luz total
+                        float s_objectLightDistance = length(lightPos - fPos3);
+                        float s_attenuation = 1 / (1 + light.linearAttenuation * s_objectLightDistance);
+
+                //                    diffuseComponent *= s_attenuation;
+                //                    specularComponent *= s_attenuation;
+
+                        break;
+
+                    case 2:
+
+                        break;
+
+                    default:
+                        break;
+                }
+
+                totalLight += diffuseComponent + specularComponent;
             }
-            
-            totalLight += diffuseComponent + specularComponent;
         }
-//        else
-//        {
-//            // Si no hay luces encendidas, calcular la luz solo con el aporte ambiental
-//            totalLight = vec3(ambient, ambient, ambient);
-//        }
         
         // Calcular el color final del fragmento (color final multiplicado por la luz total de la escena)
         gl_FragColor = (fColor * tColor) * vec4(totalLight, 1.0f);
-        //gl_FragColor = vec4(fColor.xyz, 1.0f) * vec4(totalLight, 1.0f);
     }
     else
     {
