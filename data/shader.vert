@@ -23,7 +23,7 @@ void main()
 
 	fTexCoord = vTexCoord;
     
-    fNorm = NORM * vNorm;
+    fNorm = normalize(NORM * vNorm);
     
     fPos = M * vPos;
 }

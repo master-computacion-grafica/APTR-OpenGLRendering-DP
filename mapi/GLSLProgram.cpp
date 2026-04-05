@@ -104,6 +104,7 @@ void GLSLProgram::setLight(Light& l)
     glUniform3f(varList["light.pos"], l.getPosition().x, l.getPosition().y, l.getPosition().z);
     glUniform1i(varList["light.type"], l.getType());
     glUniform3f(varList["light.color"], l.getColor().x, l.getColor().y, l.getColor().z);
+    glUniform3f(varList["light.direction"], l.getDirection().x, l.getDirection().y, l.getDirection().z);
     glUniform1f(varList["light.linearAttenuation"], l.getLinearAttenuation());
     glUniform1i(varList["light.enabled"], l.getEnabled());
 }
