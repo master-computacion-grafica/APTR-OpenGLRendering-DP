@@ -29,6 +29,14 @@ void Object3D::loadDataFromFile(std::string file)
 			// Iteramos por todos los buffers
 			auto materialNode = bufferNode.child("material");
 			auto material = FactoryEngine::getNewMaterial();
+			
+			auto colorNode = materialNode.child("color");
+			if (colorNode)
+			{
+				std::vector<std::string> colorAsString = splitString<std::string>(colorNode.text().as_string(), ',');
+				glm::vec4 color = glm::vec4(colorAsString[0], colorAsString[1], colorAsString[2], colorAsString[3]);
+				material->setColor(color);
+			}
             
 			auto textureNode = materialNode.child("texture");
 			if (textureNode)
@@ -50,6 +58,42 @@ void Object3D::loadDataFromFile(std::string file)
 				std::list<std::string> shaderList{std::begin(shaderVector), std::end(shaderVector)};
 				
 				material->loadProgram(shaderList);
+			}
+			
+			auto lightNode = materialNode.child("light");
+			if (lightNode)
+			{
+				material->setLight(lightNode.text().as_bool());
+			}
+			
+			auto shadowNode = materialNode.child("shadow");
+			if (shadowNode)
+			{
+				material->setShadow(shadowNode.text().as_bool());
+			}
+			
+			auto shininessNode = materialNode.child("shininess");
+			if (shininessNode)
+			{
+				material->setShininess(shininessNode.text().as_int());
+			}
+			
+			auto refractionNode = materialNode.child("refraction");
+			if (refractionNode)
+			{
+				material->setRefraction(refractionNode.text().as_bool());
+			}
+			
+			auto reflectionNode = materialNode.child("reflection");
+			if (reflectionNode)
+			{
+				material->setReflection(reflectionNode.text().as_bool());
+			}
+			
+			auto refractIndexNode = materialNode.child("refractIndex");
+			if (refractIndexNode)
+			{
+				material->setRefractIndex(refractIndexNode.text().as_float());
 			}
 
 			std::string meshData = bufferNode.child("meshData").text().as_string();

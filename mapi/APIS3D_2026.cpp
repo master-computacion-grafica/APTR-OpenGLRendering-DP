@@ -17,23 +17,34 @@ int main(int argc, char** argv)
 	// Inicializar la clase System
 	System::initSystem();
 
-	CameraFPS* camFPS = new CameraFPS(projectionType_e::FPS, glm::vec3(0.0f, 0.01f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 0.1f);
-	CameraKeyboard* camKeyboard = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(0.0f, 0.1f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 0.1f);
+	CameraFPS* camFPS = new CameraFPS(projectionType_e::FPS, glm::vec3(0.0f, 0.01f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
+	CameraKeyboard* camKeyboard = new CameraKeyboard(projectionType_e::KEYBOARD, glm::vec3(0.0f, 0.1f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 1.0f);
 	World* world = System::getWorld();
 	world->addCamera(camFPS);
 	world->addCamera(camKeyboard);
 	world->setActiveCamera(world->getCameraIndex(camKeyboard));
-
+	
 	//Crear objeto ciudad
-	Object3D* town = new Object3D(
+	Object3D* cubeTest = new Object3D(
 		glm::vec4(0,0,0,1), 
 		glm::vec4(0,0,0,1), 
 		glm::vec4(1,1,1,1));
-
+	
 	// Cargar mallas desde archivo
-	town->loadDataFromFile("./data/asian_town.msh");
+	cubeTest->loadDataFromFile("./data/lightBox/texturedCube.msh");
 
-	System::addObject(town);
+	System::addObject(cubeTest);
+	
+	// //Crear objeto ciudad
+	// Object3D* town = new Object3D(
+	// 	glm::vec4(0,0,0,1), 
+	// 	glm::vec4(0,0,0,1), 
+	// 	glm::vec4(1,1,1,1));
+	//
+	// // Cargar mallas desde archivo
+	// town->loadDataFromFile("./data/asian_town.msh");
+
+	// System::addObject(town);
 	
 	System::mainLoop();
 	

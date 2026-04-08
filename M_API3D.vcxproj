@@ -242,6 +242,7 @@
     <ClCompile Include="mapi\GL4Render.cpp" />
     <ClCompile Include="mapi\GLFWInputManager.cpp" />
     <ClCompile Include="mapi\GLTexture.cpp" />
+    <ClCompile Include="mapi\Light.cpp" />
     <ClCompile Include="mapi\Mesh3D.cpp" />
     <ClCompile Include="mapi\Program.cpp" />
     <ClCompile Include="mapi\Shader.cpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="mapi\GLFWInputManager.h" />
     <ClInclude Include="mapi\GLTexture.h" />
     <ClInclude Include="mapi\InputManager.h" />
+    <ClInclude Include="mapi\Light.h" />
     <ClInclude Include="mapi\Material.h" />
     <ClInclude Include="mapi\Mesh3D.h" />
     <ClInclude Include="mapi\Object.h" />

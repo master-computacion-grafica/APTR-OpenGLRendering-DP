@@ -1,7 +1,19 @@
 #version 330
 
-uniform sampler2D colorText;
-uniform bool useColorText;
+struct Material
+{
+	sampler2D colorText;
+	bool useColorText;
+};
+
+struct Light
+{
+	vec4 position;
+	vec4 color;
+	int type;
+};
+
+
 in vec4 fColor;
 in vec2 fTexCoord;
 

@@ -47,6 +47,7 @@ void GLSLMaterial::prepare()
 	program->setVertexAttrib("vPos", sizeof(vertex_t), (void*)offsetof(vertex_t, vPosition), 4, GL_FLOAT);
 	program->setVertexAttrib("vColor", sizeof(vertex_t), (void*)offsetof(vertex_t, vColor), 4, GL_FLOAT);
 	program->setVertexAttrib("vTexCoord", sizeof(vertex_t), (void*)offsetof(vertex_t, vTexCoords), 2, GL_FLOAT);
+	program->setVertexAttrib("vNorm", sizeof(vertex_t), (void*)offsetof(vertex_t, vNorm), 4, GL_FLOAT);
 	
 	if (!texture)
 		program->setColorTextDisable();
@@ -54,6 +55,11 @@ void GLSLMaterial::prepare()
 	{
 		program->setColorTextEnable();
 		program->bindColorTextureSample(texture->getTextureID(), texture);
+	}
+	
+	if (light)
+	{
+		
 	}
 	
 	program->readVarList();
