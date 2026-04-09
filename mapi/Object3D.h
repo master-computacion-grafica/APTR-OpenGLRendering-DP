@@ -5,6 +5,7 @@
 
 class Object3D : public Object
 {
+	bool computeNormals;
 public:
 
 	// CONSTRUCTOR //
@@ -16,6 +17,7 @@ public:
 
 	void loadDataFromFile(std::string file) override;
 	void loadObj(std::string objFile, Material* material);
+	void recomputeNormals();
 
 	virtual void step(double deltaTime);
 

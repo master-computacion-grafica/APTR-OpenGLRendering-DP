@@ -59,7 +59,23 @@ void GLSLMaterial::prepare()
 	
 	if (light)
 	{
+		program->setComputeLightEnable();
+		program->setInt("material.shininess", shininess);
+		program->setFloat("material.ambientK", world->getAmbient());
+		program->setVec4("cameraPos", cam->getPosition());
 		
+		for (int i = 0; i < 8; i++)
+		{
+			auto light = world->getLight(i);
+			if (light)
+			{
+				program->setVec4("lights[" + std::to_string(i) + "].position", light->getPosition());
+				program->setVec4("lights[" + std::to_string(i) + "].direction", light->getDirection());
+				program->setVec4("lights[" + std::to_string(i) + "].color", light->getColor());
+				program->setInt("lights[" + std::to_string(i) + "].type", light->getLightType());
+				program->setLightEnable(i);
+			}
+		}
 	}
 	
 	program->readVarList();

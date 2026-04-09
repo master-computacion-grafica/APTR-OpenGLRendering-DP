@@ -93,6 +93,26 @@ void GLSLProgram::setColorTextDisable()
     glUniform1i(varList["useColorText"], 0);
 }
 
+void GLSLProgram::setComputeLightEnable()
+{
+    glUniform1i(varList["material.computeLight"], 1);
+}
+
+void GLSLProgram::setComputeLightDisable()
+{
+    glUniform1i(varList["material.computeLight"], 0);
+}
+
+void GLSLProgram::setLightEnable(int i)
+{
+    glUniform1i(varList["lights[" + std::to_string(i) + "]"], 1);
+}
+
+void GLSLProgram::setLightDisable(int i)
+{
+    glUniform1i(varList["lights[" + std::to_string(i) + "]"], 0);
+}
+
 void GLSLProgram::bindColorTextureSample(int binding, Texture* texture)
 {
     glActiveTexture(GL_TEXTURE0 + binding);

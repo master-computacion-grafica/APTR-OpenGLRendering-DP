@@ -9,6 +9,7 @@ attribute vec4 vNorm;
 out vec4 fColor;
 out vec2 fTexCoord;
 out vec4 fNorm;
+out vec4 fPos;
 
 void main()
 {
@@ -19,4 +20,6 @@ void main()
 	fTexCoord = vTexCoord;
 	
 	fNorm = vNorm;
+	
+	vPos = fPos;
 }

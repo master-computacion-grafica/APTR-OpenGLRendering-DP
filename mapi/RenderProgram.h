@@ -45,6 +45,10 @@ public:
 	virtual void setMatrix(std::string name, const glm::mat4& matrix) = 0;
 	virtual void setColorTextEnable() = 0;
 	virtual void setColorTextDisable() = 0;
+	virtual void setLightEnable(int i) = 0;
+	virtual void setLightDisable(int i) = 0;
+	virtual void setComputeLightEnable() = 0;
+	virtual void setComputeLightDisable() = 0;
 	virtual void bindColorTextureSample(int binding, Texture* texture) = 0;
 
 	virtual void readVarList() = 0;

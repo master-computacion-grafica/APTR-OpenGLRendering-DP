@@ -21,5 +21,9 @@ public:
     unsigned int getVarLocation(std::string varName) override;
     void setColorTextEnable() override;
     void setColorTextDisable() override;
+    void setComputeLightEnable() override;
+    void setComputeLightDisable() override;
+    void setLightEnable(int i) override;
+    void setLightDisable(int i) override;
     void bindColorTextureSample(int binding, Texture* texture) override;
 };

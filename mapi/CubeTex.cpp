@@ -23,21 +23,25 @@ CubeTex::CubeTex()
 	mesh1->addVertex({
 		glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(1, 1)
 		});
 	mesh1->addVertex({
 		glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f),
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(0, 1)
 		});
 	mesh1->addVertex({
 		glm::vec4(-0.5f, -0.5f, 0.5f, 1.0f),
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(0, 0)
 		});
 	mesh1->addVertex({
 		glm::vec4(0.5f, -0.5f, 0.5f, 1.0f),
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(1, 0)
 		});
 
@@ -45,21 +49,25 @@ CubeTex::CubeTex()
 	mesh1->addVertex({
 		glm::vec4(0.5f, 0.5f, -0.5f, 1.0f),
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(0, 1)
 		});
 	mesh1->addVertex({
 		glm::vec4(-0.5f, 0.5f, -0.5f, 1.0f),
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(1, 1)
 		});
 	mesh1->addVertex({
 		glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f),
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(1, 0)
 		});
 	mesh1->addVertex({
 		glm::vec4(0.5f, -0.5f, -0.5f, 1.0f),
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(0, 0)
 		});
 
@@ -67,21 +75,25 @@ CubeTex::CubeTex()
 	mesh2->addVertex({
 		glm::vec4(0.5f, 0.5f, -0.5f, 1.0f),   // Back-right
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(1, 1)
 		});
 	mesh2->addVertex({
 		glm::vec4(-0.5f, 0.5f, -0.5f, 1.0f),  // Back-left
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(0, 1)
 		});
 	mesh2->addVertex({
 		glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f),   // Front-left
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(0, 0)
 		});
 	mesh2->addVertex({
 		glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),    // Front-right
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(1, 0)
 		});
 
@@ -89,21 +101,25 @@ CubeTex::CubeTex()
 	mesh2->addVertex({
 		glm::vec4(0.5f, -0.5f, 0.5f, 1.0f),   // Front-right
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(1, 1)
 		});
 	mesh2->addVertex({
 		glm::vec4(-0.5f, -0.5f, 0.5f, 1.0f),  // Front-left
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(0, 1)
 		});
 	mesh2->addVertex({
 		glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f), // Back-left
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(0, 0)
 		});
 	mesh2->addVertex({
 		glm::vec4(0.5f, -0.5f, -0.5f, 1.0f),  // Back-right
 		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(0,0,0,0),
 		glm::vec2(1, 0)
 		});
 
