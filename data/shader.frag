@@ -41,8 +41,6 @@ void main()
 
 	if(material.useColorText)
 		tColor = texture(material.colorText, fTexCoord);
-	else
-		tColor = fColor;
 
 	if(material.computeLight)
 	{
@@ -71,7 +69,6 @@ void main()
 
 					case POINT:
 					float distance = length(l.position - fPos);
-					vec3 lPosition = l.position.xyz;
 
 					float att = 1 / (1 + l.linearAttenuation * distance);
 
@@ -92,14 +89,13 @@ void main()
 					break;
 				}
 
-				totalLightComponent += l.color * (diffuseLightComponent + specularLightComponent);
+				totalLightComponent += vec4(l.color.xyz * (diffuseLightComponent + specularLightComponent), 0);
 			}
 			
 		}
-
+		
 		gl_FragColor = (fColor * tColor) * totalLightComponent;
-
-
+		
 	}
 	else
 	{
