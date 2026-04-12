@@ -63,18 +63,10 @@ int main(int argc, char** argv)
 		glm::vec4(0,0,0,1), 
 		glm::vec4(1,1,1,1));
 
-	// Object3D* box = new Object3D(
-	// 	glm::vec4(0,0,0,1), 
-	// 	glm::vec4(0,0,0,1), 
-	// 	glm::vec4(1,1,1,1));
-
 	// Cargar mallas desde archivo
 	fengshui->loadDataFromFile("./data/feng_shui/Feng_Shui.msh");
-	fengshui->setPosition(glm::vec4(-0.54f, -0.93f, -1.0f, 1.0f));
+	fengshui->setPosition(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
 	fengshui->setScale(glm::vec4(0.005f, 0.005f, 0.005f, 1.0f));
-
-	// box->loadDataFromFile("./data/lightBox/texturedCube.msh");
-	// box->setPosition(glm::vec4(-0.54f, -0.93f, -1.0f, 1.0f));
 
 	// Anyadir el objeto al mundo
 	System::addObject(fengshui);
@@ -82,10 +74,3 @@ int main(int argc, char** argv)
 	
 	System::mainLoop();
 }
-
-//		//cerrar librer�as gr�ficas
-//
-//		glfwTerminate();
-//	
-//	}
-//	return 0;

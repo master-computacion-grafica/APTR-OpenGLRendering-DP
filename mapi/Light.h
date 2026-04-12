@@ -63,5 +63,5 @@ public:
 
     // METHODS && FUNCTIONS //
 
-    virtual void step(double timeStep) override;
+    virtual void step(double timeStep) override {}
 };

@@ -54,58 +54,63 @@ void main()
         // Si la luz esta activa, calcular los aportes difuso y especular
         if (nLights > 0)
         {
+            vec3 fPos3 = fPos.xyz;
+            
             for(int i; i < nLights; i++)
             {
                 Light light = lights[i];
-                
                 vec3 lightPos = light.pos;
-                vec3 fPos3 = fPos.xyz;
 
-                switch (light.type)
+                if (light.enabled)
                 {
-                    case 0:
-                        // Calcular la componente difusa (utilizando el angulo de incidencia con respecto a la normal)
-                        vec3 p_normal = normalize(fNorm.xyz);
-                        vec3 p_lightRay = -1 * (normalize(light.direction));
+                    switch (light.type)
+                    {
+                        case 0:
+                    // Calcular la componente difusa (utilizando el angulo de incidencia con respecto a la normal)
+                            vec3 d_normal = normalize(fNorm.xyz);
+                            vec3 d_lightRay = normalize(light.direction);
 
-                        diffuseComponent = light.color * max(dot(p_normal, p_lightRay), 0.0f);
+                            vec3 d_lightRayInv = -d_lightRay;
 
-                        // Calcular la componente especular (utilizando el angulo entre el rayo reflejado y el vector vista desde la camara)
-                        vec3 p_eye = normalize(fPos3 - camPos);
-                        vec3 p_half = normalize(p_eye - p_lightRay);
+                            diffuseComponent = light.color * max(dot(d_normal, d_lightRayInv), 0.0f);
 
-                        specularComponent = light.color * pow(max(dot(p_half, p_eye), 0.0f), mat.shininess);
+                    // Calcular la componente especular (utilizando el angulo entre el rayo reflejado y el vector vista desde la camara)
+                            vec3 d_eye = normalize(camPos - fPos3);
+                            vec3 d_half = normalize(d_eye - d_lightRay);
 
-                        break;
+                            specularComponent = light.color * pow(max(dot(d_half, d_eye), 0.0f), mat.shininess);
 
-                    case 1:
-                        // Calcular la componente difusa (utilizando el angulo de incidencia con respecto a la normal)
-                        vec3 s_normal = normalize(fNorm.xyz);
-                        vec3 s_lightRay = normalize(lightPos - fPos3);
+                            break;
 
-                        diffuseComponent = light.color * max(dot(s_normal, s_lightRay), 0.0f);
+                        case 1:
+                    // Calcular la componente difusa (utilizando el angulo de incidencia con respecto a la normal)
+                            vec3 p_normal = normalize(fNorm.xyz);
+                            vec3 p_lightRay = normalize(lightPos - fPos3);
 
-                        // Calcular la componente especular (utilizando el angulo entre el rayo reflejado y el vector vista desde la camara)
-                        vec3 s_reflectedRay = normalize(reflect(s_lightRay, s_normal));
-                        vec3 s_eye = normalize(fPos3 - camPos);
+                            diffuseComponent = light.color * max(dot(p_normal, p_lightRay), 0.0f);
 
-                        specularComponent = light.color * pow(max(dot(s_reflectedRay, s_eye), 0.0f), mat.shininess);
+                    // Calcular la componente especular (utilizando el angulo entre el rayo reflejado y el vector vista desde la camara)
+                            vec3 p_reflectedRay = normalize(reflect(p_lightRay, p_normal));
+                            vec3 p_eye = normalize(fPos3 - camPos);
 
-                        // Calcular la componente de luz total
-                        float s_objectLightDistance = length(lightPos - fPos3);
-                        float s_attenuation = 1 / (1 + light.linearAttenuation * s_objectLightDistance);
+                            specularComponent = light.color * pow(max(dot(p_reflectedRay, p_eye), 0.0f), mat.shininess);
 
-                //                    diffuseComponent *= s_attenuation;
-                //                    specularComponent *= s_attenuation;
+                    // Calcular la componente de luz total
+                            float p_objectLightDistance = length(lightPos - fPos3);
+                            float p_attenuation = 1 / (1 + light.linearAttenuation * p_objectLightDistance);
 
-                        break;
+                            diffuseComponent *= p_attenuation;
+                            specularComponent *= p_attenuation;
 
-                    case 2:
+                            break;
 
-                        break;
+                        case 2:
 
-                    default:
-                        break;
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
 
                 totalLight += diffuseComponent + specularComponent;
