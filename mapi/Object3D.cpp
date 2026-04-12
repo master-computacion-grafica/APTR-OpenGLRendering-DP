@@ -37,6 +37,10 @@ void Object3D::loadDataFromFile(std::string file)
 				auto colorComponents = splitString<float>(colorStr, ',');
 				material->setColor(glm::vec4(colorComponents[0], colorComponents[1], colorComponents[2], colorComponents[3]));
 			}
+			else
+			{
+				material->setColor(glm::vec4(1,1,1,1));
+			}
             
 			auto textureNode = materialNode.child("texture");
 			if (textureNode)
@@ -75,7 +79,7 @@ void Object3D::loadDataFromFile(std::string file)
 			auto shininessNode = materialNode.child("shininess");
 			if (shininessNode)
 			{
-				material->setShininess(shininessNode.text().as_int());
+				material->setShininess(shininessNode.text().as_float());
 			}
 			
 			auto refractionNode = materialNode.child("refraction");
@@ -163,18 +167,18 @@ void Object3D::loadObj(std::string objFile, Material* material)
                         auto indexes = splitString<int>(vert, '/');
                     	if (indexes.size() == 3)
                     	{
-                    		v[i] = { vPos[indexes[0] - 1],{0,0,0,0}, vNorm[indexes[2] -1],
+                    		v[i] = { vPos[indexes[0] - 1],material->getColor(), vNorm[indexes[2] -1],
 							vTC[indexes[1] - 1] };
                     	}
                     	else if (indexes.size() == 2)
                     	{
-                    		v[i] = { vPos[indexes[0] - 1],{0,0,0,0}, {0,0,0,1},
+                    		v[i] = { vPos[indexes[0] - 1],material->getColor(), {0,0,0,1},
 							vTC[indexes[1] - 1] };
                     		computeNormals = true;
                     	}
                     	else if (indexes.size() == 1)
                     	{
-                    		v[i] = { vPos[indexes[0] -1],{0,0,0,0} };
+                    		v[i] = { vPos[indexes[0] -1],material->getColor() };
                     		computeNormals = true; //se debenrecalcularlas normalesal acabarde cargarinformación
                     	}
                         m->getVertexList()[indexes[0] - 1 - vertexOffset] = v[i];

@@ -10,16 +10,21 @@ enum LightType
 
 class Light: public Entity
 {
+protected:
     LightType type;
     glm::vec4 color, direction;
     float linearAttenuation;
     bool isEnabled;
 public:
     
-    Light(LightType type, glm::vec4 color, float linearAttenuation, bool isEnabled = true)
+    Light(glm::vec4 position, glm::vec4 rotation, glm::vec4 scale, LightType type, glm::vec4 color, glm::vec4 direction, float linearAttenuation, bool isEnabled = true)
     {
+        this->position = position;
+        this->rotation = rotation;
+        this->scale = scale;
         this->type = type;
         this->color = color;
+        this->direction = direction;
         this->linearAttenuation = linearAttenuation;
         this->isEnabled = isEnabled;
     }
@@ -44,7 +49,7 @@ public:
     
     void setIsEnabled(bool isEnabled);
     
-    void step(double deltaTime) override {}
+    virtual void step(double deltaTime) override {}
     
     ~Light() override = default;
 };

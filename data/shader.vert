@@ -1,6 +1,9 @@
 #version 330
 
 uniform mat4 MVP;
+uniform mat4 M;
+uniform mat4 NORM;
+
 attribute vec4 vPos;
 attribute vec4 vColor;
 attribute vec2 vTexCoord;
@@ -19,7 +22,7 @@ void main()
 
 	fTexCoord = vTexCoord;
 	
-	fNorm = vNorm;
+	fNorm = normalize(NORM * vNorm);
 	
-	vPos = fPos;
+	fPos = M * vPos;
 }

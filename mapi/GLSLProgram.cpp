@@ -85,12 +85,12 @@ void GLSLProgram::setMatrix(std::string name, const glm::mat4& matrix)
 
 void GLSLProgram::setColorTextEnable()
 {
-    glUniform1i(varList["useColorText"], 1);
+    glUniform1i(varList["material.useColorText"], 1);
 }
 
 void GLSLProgram::setColorTextDisable()
 {
-    glUniform1i(varList["useColorText"], 0);
+    glUniform1i(varList["material.useColorText"], 0);
 }
 
 void GLSLProgram::setComputeLightEnable()
@@ -105,12 +105,12 @@ void GLSLProgram::setComputeLightDisable()
 
 void GLSLProgram::setLightEnable(int i)
 {
-    glUniform1i(varList["lights[" + std::to_string(i) + "]"], 1);
+    glUniform1i(varList["lights[" + std::to_string(i) + "].enable"], 1);
 }
 
 void GLSLProgram::setLightDisable(int i)
 {
-    glUniform1i(varList["lights[" + std::to_string(i) + "]"], 0);
+    glUniform1i(varList["lights[" + std::to_string(i) + "].enable"], 0);
 }
 
 void GLSLProgram::bindColorTextureSample(int binding, Texture* texture)
@@ -122,7 +122,7 @@ void GLSLProgram::bindColorTextureSample(int binding, Texture* texture)
     else
         textureType = GL_TEXTURE_2D;
     glBindTexture(textureType, dynamic_cast<GLTexture*>(texture)->getGlTextureID());
-    glUniform1i(varList["colorText"], binding);
+    glUniform1i(varList["material.colorText"], binding);
     
 }
 

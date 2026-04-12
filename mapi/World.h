@@ -65,6 +65,8 @@ public:
 	void removeLight(Light* light);
 
 	size_t getNumCameras();
+	
+	size_t getNumLights();
 
 };
 

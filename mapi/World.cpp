@@ -144,6 +144,11 @@ size_t World::getNumCameras()
     return cameras.size();
 }
 
+size_t World::getNumLights()
+{
+    return lights.size();
+}
+
 Camera* World::getCamera(size_t index)
 {
     auto iterator = cameras.begin();

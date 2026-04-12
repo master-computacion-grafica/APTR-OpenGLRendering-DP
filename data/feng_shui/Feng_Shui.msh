@@ -2,21 +2,18 @@
 	<buffers>
 		<buffer>
 			<material>
-				<color>1,1,1,1</color>
-				<texture type="color2D" >
-					<layer name="textureColor" >data/lightBox/front.png</layer>
-				</texture>
+				<color>0.5,1.0,0.5,1</color>				
 				<shader>data/shader.vert,data/shader.frag</shader>
 				<depthWrite>true</depthWrite>
 				<light>true</light>
-				<shadow>true</shadow>
-				<shininess>16</shininess>
+				<shadow>false</shadow>
+				<shininess>20</shininess>
 				<blendMode>none</blendMode>
 				<refraction>false</refraction>
 				<refractIndex>0.9</refractIndex>
 				<reflection>false</reflection>
 			</material>
-			<meshData>./data/lightBox/texturedCube.obj</meshData>
-		</buffer>
+			<meshData>./data/feng_shui/Feng_Shui.obj</meshData>
+		</buffer>		
 	</buffers>
 </mesh>

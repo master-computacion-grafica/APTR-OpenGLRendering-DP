@@ -15,7 +15,7 @@ protected:
 	
 	glm::vec4 color;
 	
-	int shininess;
+	float shininess;
 	
 	bool 
 		light,
@@ -51,9 +51,9 @@ public:
 	
 	void setShadow(bool value) { this->shadow = value; }
 	
-	int getShininess() { return shininess; }
+	float getShininess() { return shininess; }
 	
-	void setShininess(int value) { this->shininess = value; }
+	void setShininess(float value) { this->shininess = value; }
 	
 	bool getReflection() { return reflection; }
 	
