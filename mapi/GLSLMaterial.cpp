@@ -75,6 +75,9 @@ void GLSLMaterial::prepare()
 		program->setBool("mat.lightEnable", true);
 		program->setFloat("mat.shininess", shininess);
 
+		// Settear la posicion de la camara
+		program->setVec3("camPos", cam->getPosition());
+		
 		// Si el mundo tiene luces settearlas para el shader de fragmentos
 		if (!world->getLights().empty())
 		{
